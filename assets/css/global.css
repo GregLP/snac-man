@@ -1,0 +1,55 @@
+body {
+
+background-image:url('../img/background.png');
+
+}
+
+div {
+
+padding:0.10%;
+
+}
+
+#center { 
+
+background-color:#fee090 ;
+width:95%;
+height:100;
+margin-left:2.5%;
+margin-right:2.5%;
+margin-top:0.5%;
+margin-bottom:0.5%;
+border:1px solid #212121; 
+position:relative; 
+
+
+-moz-border-radius-bottomright: 25px;
+border-bottom-right-radius:25px;
+
+-moz-border-radius-bottomleft: 25px;
+border-bottom-left-radius: 25px;
+
+-moz-border-radius-topright: 25px;
+border-top-right-radius: 25px;
+
+-moz-border-radius-topleft: 25px;
+border-top-left-radius: 25px;
+
+}
+
+
+#copyright {
+
+font:bold;
+text-align: center;
+margin-top:5%;
+margin-bottom:0%;
+font-size:1.5em;
+
+}
+
+#settings {
+position:relative;
+margin-left:93%;
+margin-top:2%;
+}
