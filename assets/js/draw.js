@@ -118,7 +118,7 @@ var placeBadGuy = function(ufo, id){
 	document.getElementById(id).style.top = new_top_offset + "px";
 };
 
-//Creates a new function placePrizes() that adds the prizes to the game 
+//Creates a new function placePrizes() that adds the prizes to the game
 var placePrizes = function(prizes){
 	var pos = "";
 	var id = "";
@@ -132,3 +132,9 @@ var placePrizes = function(prizes){
 		document.getElementById(id).style.top = new_top_offset + "px";
 	}
 }(3);
+
+// moves() function moves the badguy every 1.5 seconds
+var moves = setInterval(function(){
+    moveBadGuys("badGuy1");
+    //moveBadGuys("badGuy2");
+    }, 1500);

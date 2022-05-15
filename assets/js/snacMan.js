@@ -44,7 +44,6 @@ var availablePrizes = [true, true, true];
 
 var puzzle = getParameterByName("name");
 var gameSongs = games[puzzle]["puzzle"];
-$("#munchers").text(games[puzzle]["title"]);
 
 var songs = Object.keys(gameSongs);
 
@@ -55,8 +54,3 @@ placeSpaceship(spacePos, "test");
 placeSpaceship(badGuyPos1, "badGuy1");
 //placeSpaceship(badGuyPos2, "badGuy2");
 stateChange();
-
-var moves = setInterval(function(){
-    moveBadGuys("badGuy1");
-    //moveBadGuys("badGuy2");
-    }, 1500);
