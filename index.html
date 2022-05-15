@@ -1,64 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SNAC-MAN</title>
-    <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/global.css" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/logo.png">
 </head>
 <body>
-    <header>
-        <div id="settings">
-            <a href="settings.html"><span class="glyphicon glyphicon-align-justify"></span></a>
-        </div>
-        <div class="logo">
-            <img src="assets/img/logo.png" alt="SNAC-MAN" class="img-responsive center-block" width="350" height="350">
-        </div>
-    </header>
-    <main class="containter-fluid" id="center">
-        <div class="row">
-            <div class="col-xs-6">
-                <a href="all.html"> <button class="btn btn-primary btn-lg btn-block" type="button">ALL <span class="glyphicon glyphicon-globe"></span></button></a>
+    <div id="pageBlur" class="d-flex flex-column justify-content-between align-items-center">
+        <header class="align-self-end">
+            <div id="settings" class="text-end">
+                <a href="settings.html"><svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 0 24 24" width="50px" fill="##000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></a>
             </div>
-            <div class="col-xs-6">
-                <a href="film.html"><button class="btn btn-primary btn-lg btn-block" type="button">FILM <span class="glyphicon glyphicon-facetime-video"></span></button></a>
+        </header>
+        <main id="content" class="d-flex flex-column justify-content-evenly align-items-stretch">
+            <div class="container-logo mb-4">
+                <div class="logo d-flex flex-row justify-content-center align-items-center">
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.23 37.14">
+                        <path d="M30.67,11.3C29.52,5.18,23.45,.5,16.12,.5S2.71,5.18,1.56,11.3H30.67Z" style="fill:#a5712a; stroke:#a5712a; stroke-miterlimit:10;"/>
+                        <path d="M2.41,22.48c2.33,5.25,7.59,8.92,13.71,8.92s11.37-3.67,13.71-8.92H2.41Z" style="fill:#a5712a; stroke:#a5712a; stroke-miterlimit:10;"/>
+                        <path d="M15.12,3.75c0,1.12-.87,2.03-1.94,2.03s-1.94-.91-1.94-2.03,.87-2.03,1.94-2.03,1.94,.91,1.94,2.03Z" style="fill:#fff; stroke:#212121; stroke-miterlimit:10; stroke-width:.25px;"/>
+                        <path d="M21.65,3.61c0,1.12-.87,2.03-1.94,2.03s-1.94-.91-1.94-2.03,.87-2.03,1.94-2.03,1.94,.91,1.94,2.03Z" style="fill:#fff; stroke:#212121; stroke-miterlimit:10; stroke-width:.25px;"/>
+                        <path d="M21.25,4.42c0,.63-.48,1.15-1.08,1.15s-1.08-.51-1.08-1.15,.48-1.15,1.08-1.15,1.08,.51,1.08,1.15Z" style="fill:#212121; stroke:#231f20; stroke-miterlimit:10; stroke-width:.25px;"/>
+                        <path d="M13.84,3.15c0,.63-.48,1.15-1.08,1.15s-1.08-.51-1.08-1.15,.48-1.15,1.08-1.15,1.08,.51,1.08,1.15Z" style="fill:#212121; stroke:#231f20; stroke-miterlimit:10; stroke-width:.25px;"/>
+                        <text transform="translate(3.94 17.73)" style="fill:#212121; font-family:ArialMT, Arial; font-size:6px;"><tspan x="0" y="0">snacman</tspan></text>
+                        <line x1="14.64" y1="31.85" x2="14.64" y2="37.1" style="fill:none; stroke:#231f20; stroke-miterlimit:10; stroke-width:.5px;"/>
+                        <line x1="9.55" y1="36.89" x2="14.87" y2="36.89" style="fill:none; stroke:#231f20; stroke-miterlimit:10; stroke-width:.5px;"/>
+                        <line x1="18.98" y1="31.68" x2="18.98" y2="37.1" style="fill:none; stroke:#231f20; stroke-miterlimit:10; stroke-width:.5px;"/><line x1="18.78" y1="36.89" x2="24.1" y2="36.89" style="fill:none; stroke:#231f20; stroke-miterlimit:10; stroke-width:.5px;"/>
+                    </svg>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <a href="life.html"><button class="btn btn-primary btn-lg btn-block" type="button">MUSIC <span class="glyphicon glyphicon-music"></span></button></a>
+            <div id="puzzles">
+                <div class="puzzle-container d-flex flex-column flex-md-row flex-wrap align-items-center justify-content-center">
+                    <div class="flex-item puzzle align-self-stretch align-self-md-center"><a href="all.html"> <button class="btn btn-puzzle btn-primary btn-lg btn-block" type="button">All</button></a></div>
+                    <div class="flex-item puzzle align-self-stretch align-self-md-center"><a href="film.html"><button class="btn btn-puzzle btn-primary btn-lg btn-block" type="button">Film</button></a></div>
+                    <div class="flex-item puzzle align-self-stretch align-self-md-center"><a href="life.html"><button class="btn btn-puzzle btn-primary btn-lg btn-block" type="button">Music</button></a></div>
+                    <div class="flex-item puzzle align-self-stretch align-self-md-center"><a href="literature.html"><button class="btn btn-puzzle btn-primary btn-lg btn-block" type="button">Literature</button></a></div>
+                    <div class="flex-item puzzle align-self-stretch align-self-md-center"><a href="history.html"><button class="btn btn-puzzle btn-primary btn-lg btn-block" type="button">History</button></a></div>
+                    <div class="flex-item puzzle align-self-stretch align-self-md-center"><a href="music.html"><button class="btn btn-puzzle btn-primary btn-lg btn-block" type="button">Technology</button></a></div>
+                    <div class="flex-item puzzle align-self-stretch align-self-md-center"><a href="sports.html"><button class="btn btn-puzzle btn-primary btn-lg btn-block" type="button">Sports</button></a></div>
+                    <div class="flex-item puzzle align-self-stretch align-self-md-center"><a href="tv.html"><button class="btn btn-puzzle btn-primary btn-lg btn-block" type="button">TV</button></a></div>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <a href="literature.html"><button class="btn btn-primary btn-lg btn-block" type="button">LITERATURE <span class="glyphicon glyphicon-book"></span></button></a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <a href="history.html"><button class="btn btn-primary btn-lg btn-block" type="button">HISTORY <span class="glyphicon glyphicon-tower"></span></button></a>
-            </div>
-            <div class="col-xs-6">
-                <a href="music.html"><button class="btn btn-primary btn-lg btn-block" type="button">TECHNOLOGY <span class="glyphicon glyphicon-floppy-disk"></span></button></a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <a href="sports.html"><button class="btn btn-primary btn-lg btn-block" type="button">SPORTS <span class="glyphicon glyphicon-bullhorn"></span></button></a>
-            </div>
-            <div class="col-xs-6">
-                <a href="tv.html"><button class="btn btn-primary btn-lg btn-block" type="button">TV <span class="glyphicon glyphicon-hd-video"></span></button></a>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <div id="copyright">
-            <p>&#169; 2022 SNAC-MAN</p>
-        </div>
-    </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+        </main>
+        <footer class="align-self-center">
+            <p id="copyright" class="mb-0"><small class="lead">&#169; 2022 snacman</small></p>
+        </footer>
+    </div>
 </body>
 </html>
