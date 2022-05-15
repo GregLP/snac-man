@@ -1,91 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  
 <head>
-    
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>SNAC-MAN</title>
-     
     <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/global.css" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/logo.png">
-    
 </head>
-
 <body>
-	
-	<div class="containter-fluid" id="center">
-		
-		<div id="settings">
-			<a href="settings.html"><span class="glyphicon glyphicon-align-justify"></span></a>
-		</div>
-		
-		<div>
-			<img src="assets/img/logo.png" alt="SNAC-MAN" class="img-responsive center-block" width="350" height="350">	
-		</div>
-		
-		<div class="row"> <!-- Row 1 Begin -->	
-			
-			<div class="col-xs-6"> 
-				<a href="all.html"> <button class="btn btn-primary btn-lg btn-block" type="button">ALL          <span class="glyphicon glyphicon-globe"></span></button></a>	
-			 </div>
-			 		 
-			<div class="col-xs-6"> 
-				<a href="film.html"><button class="btn btn-primary btn-lg btn-block" type="button">FILM          <span class="glyphicon glyphicon-facetime-video"></span></button></a>
-			</div>
-				
-		</div> <!-- Row 1 END -->	
-				
-		<div class="row"> <!-- Row 2 Begin -->	
-				
-				<div class="col-xs-6">
-					<a href="life.html"><button class="btn btn-primary btn-lg btn-block" type="button">MUSIC         <span class="glyphicon glyphicon-music"></span></button></a>
-			 	</div>
-		
-				<div class="col-xs-6"> 
-					<a href="literature.html"><button class="btn btn-primary btn-lg btn-block" type="button">LITERATURE        <span class="glyphicon glyphicon-book"></span></button></a> 
-				</div>
-					
-			</div> <!-- Row 2 END -->		
-			
-				<div class="row"> <!-- Row 3 Begin -->	
-				
-				<div class="col-xs-6">
-					<a href="history.html"><button class="btn btn-primary btn-lg btn-block" type="button">HISTORY        <span class="glyphicon glyphicon-tower"></span></button></a>
-			 	</div>
-		
-				<div class="col-xs-6"> 
-					<a href="music.html"><button class="btn btn-primary btn-lg btn-block" type="button">TECHNOLOGY        <span class="glyphicon glyphicon-floppy-disk"></span></button></a> 
-				</div>
-					
-			</div> <!-- Row 3 END -->	
-			
-			<div class="row"> <!-- Row 4 Begin -->	
-				
-				<div class="col-xs-6">
-					<a href="sports.html"><button class="btn btn-primary btn-lg btn-block" type="button">SPORTS        <span class="glyphicon glyphicon-bullhorn"></span></button></a>
-			 	</div>
-		
-				<div class="col-xs-6"> 
-					<a href="tv.html"><button class="btn btn-primary btn-lg btn-block" type="button">TV        <span class="glyphicon glyphicon-hd-video"></span></button></a> 
-				</div>
-					
-			</div> <!-- Row 4 END -->
-					
-			
-		<div id="copyright">
-			<p>&#169; 2015 SNAC-MAN</p>
-		</div> <!-- Close Copyright -->	
-										
-	</div> <!-- Close Container --> 
-	  
-    
+    <header>
+        <div id="settings">
+            <a href="settings.html"><span class="glyphicon glyphicon-align-justify"></span></a>
+        </div>
+        <div class="logo">
+            <img src="assets/img/logo.png" alt="SNAC-MAN" class="img-responsive center-block" width="350" height="350">
+        </div>
+    </header>
+    <main class="containter-fluid" id="center">
+        <div class="row">
+            <div class="col-xs-6">
+                <a href="all.html"> <button class="btn btn-primary btn-lg btn-block" type="button">ALL <span class="glyphicon glyphicon-globe"></span></button></a>
+            </div>
+            <div class="col-xs-6">
+                <a href="film.html"><button class="btn btn-primary btn-lg btn-block" type="button">FILM <span class="glyphicon glyphicon-facetime-video"></span></button></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <a href="life.html"><button class="btn btn-primary btn-lg btn-block" type="button">MUSIC <span class="glyphicon glyphicon-music"></span></button></a>
+            </div>
+            <div class="col-xs-6">
+                <a href="literature.html"><button class="btn btn-primary btn-lg btn-block" type="button">LITERATURE <span class="glyphicon glyphicon-book"></span></button></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <a href="history.html"><button class="btn btn-primary btn-lg btn-block" type="button">HISTORY <span class="glyphicon glyphicon-tower"></span></button></a>
+            </div>
+            <div class="col-xs-6">
+                <a href="music.html"><button class="btn btn-primary btn-lg btn-block" type="button">TECHNOLOGY <span class="glyphicon glyphicon-floppy-disk"></span></button></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <a href="sports.html"><button class="btn btn-primary btn-lg btn-block" type="button">SPORTS <span class="glyphicon glyphicon-bullhorn"></span></button></a>
+            </div>
+            <div class="col-xs-6">
+                <a href="tv.html"><button class="btn btn-primary btn-lg btn-block" type="button">TV <span class="glyphicon glyphicon-hd-video"></span></button></a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div id="copyright">
+            <p>&#169; 2022 SNAC-MAN</p>
+        </div>
+    </footer>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>
