@@ -1,3 +1,12 @@
+var score = 0;
+var chewable = true;
+var puzzle = getParameterByName("name");
+var gameSongs = games[puzzle]["puzzle"];
+var songs = Object.keys(gameSongs);
+drawLives(2);
+drawBoard();
+placeSnacman();
+
 Object.keys = Object.keys || (function () {
     var hasOwnProperty = Object.prototype.hasOwnProperty,
         hasDontEnumBug = !{toString:null}.propertyIsEnumerable("toString"),
@@ -28,28 +37,6 @@ Object.keys = Object.keys || (function () {
                     result.push(DontEnums[i]);
             }
         }
-
         return result;
     };
 })();
-
-var score = 0;
-var badGuyPos2 = "99";
-var isBlue = false;
-var badGuyDead = false;
-var chewable = true;
-var prize1Chewable = false;
-var chewablePrizes = [false, false, false];
-var availablePrizes = [true, true, true];
-
-var puzzle = getParameterByName("name");
-var gameSongs = games[puzzle]["puzzle"];
-
-var songs = Object.keys(gameSongs);
-
-drawLives(2);
-
-drawBoard();
-placeSnacman();
-//placeSpaceship(badGuyPos1, "badGuy1");
-//stateChange();
