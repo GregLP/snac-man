@@ -54,7 +54,7 @@ var drawBoard = function(){
 	for (var i = 0; i < rows; i++){
 		left_offset = window.innerWidth/4;
 		for (var j = 0; j < cols; j++){
-            document.write(` <div id="${i.toString() + "r" + j.toString()}" class="cell" style="top:${top_offset}px; left:${left_offset}px; height: ${dim}px; width: ${dim}px;"<p>${songs.pop()}</p></div> `);
+            document.write(` <div id="${i.toString() + "r" + j.toString()}" class="cell" style="top:${top_offset}px; left:${left_offset}px; height: ${dim}px; width: ${dim}px;"><p>${songs.pop()}</p></div> `);
 			left_offset += dim;
 		}
 		top_offset += dim;
