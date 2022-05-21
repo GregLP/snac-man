@@ -8,7 +8,7 @@ function getParameterByName(name) {
 
 var puzzle = getParameterByName("name"); // Declare a new variable puzzle.  Assign it the value returned by the getParameterByName function with "name" passed as argument
 var gameSongs = games[puzzle]["puzzle"]; // Delcare new variable gameSongs. Assign it the value of the property puzzle from the object games
-$("#munchers").text(games[puzzle]["title"]); // jQuery Target the html element with the id #munchers and replace the content with the value of the property title from the object games
+$("#gameTitle").text(games[puzzle]["title"]); // jQuery Target the html element with the id #munchers and replace the content with the value of the property title from the object games
 
 var songs = Object.keys(gameSongs); // Declare a new variable songs. Assign it the value of the Object.keys() method with gameSongs passed as an argument
 
@@ -41,13 +41,12 @@ document.write("<div id=\"celebrate\"><h2>You Win!</h2></div>"); //Writes a cele
 
 //Create new function drawLives() that draws snacman on the right of the board. Calculates lives remaining.
 var drawLives = function(lives){
-	var lives_offset_left = left_offset + cols*dim + dim/2;
-	//var lives_offset_top = top_offset + rows*dim/2;
-	var lives_offset_top = 400;
 	for (var i = 0; i < lives; i++){
-		document.write("<img src=\"assets/img/logo.png\" id=\"life" + i + "\" style=\"top:" + lives_offset_top + "px; left:" + (lives_offset_left + i*100) + "px;\" />");
+        const lives_container = document.getElementById("gameLivesRemaining");
+        const lives_remaining_html = `<img class="life-remaining" id="life${i}" width="50" height="50" src="assets/img/svg/logo.svg" alt="snacman extra life">`;
+        lives_container.insertAdjacentHTML("beforeend", lives_remaining_html);
 	}
-}
+};
 
 //Create new function drawPrizeClicks() that draws circles on the top right of the board.
 var drawPrizeClicks = function(prizes){

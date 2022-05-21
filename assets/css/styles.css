@@ -4,6 +4,9 @@
 #gameLivesRemaining {
   flex: 0 0 10%;
 }
+img.life-remaining {
+    position: relative;
+}
 #gameTimer {
   flex: 0 0 10%;
 }
