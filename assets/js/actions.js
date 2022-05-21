@@ -215,7 +215,6 @@ var spaceCheck = setInterval(function(){
 					availablePrizes[i - 1] = false;
 					chew();
 					score += 150;
-					document.getElementById("gamePointTotal").innerHTML = score;
 					$('#prize' + i).css("visibility", "hidden");
 					prizeActions[i - 1]();
 				}
@@ -231,7 +230,6 @@ var spaceCheck = setInterval(function(){
 			if (!badGuyDead){
 				badGuyDead = true;
 				chew();
-				//evalSound('nom');
 				$('#badGuy1').css("visibility", "hidden");
 			}
 		}
