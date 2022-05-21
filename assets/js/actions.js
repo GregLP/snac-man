@@ -10,7 +10,7 @@ var chew = function(){
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat4.png'}, 120);
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat3.png'}, 140);
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat2.png'}, 160);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat1.png';
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/svg/snacman.svg';
 		$('#snacman').css('top', top + "px");}, 180);
 };
 
@@ -31,7 +31,7 @@ var die = function(){
 		deathFrameTimeout(i);
 	}
 
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat1.png';
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/svg/snacman.svg';
 		$('#snacman').css('top', "800px");
 	}, 1000);
 };
@@ -104,7 +104,7 @@ var addPrizeClick = function(i){
 for (var i = 1; i <= 3; i++){
 	addPrizeClick(i);
 }
-*/
+
 
 var addClickHandler = function(i, j){
 	 $('div#' + i.toString() + "r" + j.toString()).click(function(){
@@ -119,7 +119,7 @@ var addClickHandler = function(i, j){
 		}
 	});
 };
-
+*/
 var addDoubleClickHandler = function(i, j){
 	$('div#' + i.toString() + "r" + j.toString()).dblclick(function(){
 		if (gameSongs[$('div#' + i.toString() + "r" + j.toString()).text()] && lives && i.toString() + j.toString() == spacePos){
@@ -158,8 +158,8 @@ var lifeCheck = function(lives, hit){
 	spacePos = "00";
 	badGuyPos1 = "33";
 	setTimeout(function(){
-		placeSpaceship(spacePos, "snacman");
-		placeSpaceship(badGuyPos1, "badGuy1");}, 1050);
+		placeSnacman();}, 1050);
+		//placeSpaceship(badGuyPos1, "badGuy1");}, 1050);
 };
 
 var moveBadGuys = function(id){
@@ -173,11 +173,13 @@ var moveBadGuys = function(id){
 	placeBadGuy(nextBadRow + nextBadCol, id);
 };
 
+
 var moveSpaceship = function(ufo, id){
 	curRow = Number(spacePos[0]);
 	curCol = Number(spacePos[1]);
 	nextRow = Number(ufo[0]);
 	nextCol = Number(ufo[1]);
+
 	var move = setInterval(function(){
 		if (curCol < nextCol)
 			placeSpaceship(curRow.toString() + (++curCol).toString(), id);
@@ -216,6 +218,7 @@ var celebrate = function(){
 }, 200);
 }
 
+/*
 var spaceCheck = setInterval(function(){
 	for (var i = 1; i <= 3; i++){
 			if ((parseInt($('#snacman').css("left")) == parseInt($('#prize' + i).css("left"))) && (parseInt($('#snacman').css("top"))) == parseInt($('#prize' + i).css("top"))){
@@ -243,56 +246,78 @@ var spaceCheck = setInterval(function(){
 		}
 	}
 }, 250);
+*/
 
-var munchCheck = function(){
-	if (gameSongs[$('div#' + spacePos[0] + "r" + spacePos[1]).text()] && lives){
-		++numCorrect;
-		score += 100;
-		$('#gamePointTotal').text(score);
-		progressBarValue += progressBarPercentage;
-		$('#progressBar').css("width", progressBarValue + '%');
-		$('div#' + spacePos[0] + "r" + spacePos[1]).css("color", "#5dfc0a");
-		setTimeout(function(){$('div#' + spacePos[0] + "r" + spacePos[1]).text(" ");}, 30);
-		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
-		if (numCorrect == numToWin){
-			setCookie("bob", 1, 1);
-			celebrate();
-		}
-	}
-	else if ( ( $('div#' + spacePos[0] + "r" + spacePos[1]).text() == 'Wrong!' ) || ( $('div#' + spacePos[0] + "r" + spacePos[1]).text() == 'No snacs!' ) ||  ( $('div#' + spacePos[0] + "r" + spacePos[1]).html() === " " ) ) {
-		$('div#' + spacePos[0] + "r" + spacePos[1]).text("No snacs!");
-	}
-	else if (lives > 0){
-		$('div#' + spacePos[0] + "r" + spacePos[1]).text("Wrong!");
-		$('div#' + spacePos[0] + "r" + spacePos[1]).css("color", "red");
-		lifeCheck(--lives);
-		die();
-	}
-	else{
-		clearInterval(clock);
-		gameOver();
-	}
-}
 
+
+let currentRow = 0;
+let currentColumn = 0;
 onkeydown = function(e){
-	curRow = Number(spacePos[0]);
-	curCol = Number(spacePos[1]);
 	if (e.keyCode == '39'){
-		placeSpaceship(curRow.toString() + (++curCol%cols).toString(), "snacman");
+		currentColumn++;
+		if (currentColumn >= cols ) {
+			currentColumn = 0;
+		}
+		let rightMoveDivID = `#${currentRow}r${currentColumn}`;
+		$("#snacman").appendTo(rightMoveDivID);
 	}
-	else if (e.keyCode == '37'){
-		placeSpaceship(curRow.toString() + ((cols + --curCol)%cols).toString(), "snacman");
+	else if (e.keyCode == '37') {
+		currentColumn--;
+		if (currentColumn < 0 ) {
+			currentColumn = (cols - 1);
+		}
+		leftMoveDivID = `#${currentRow}r${currentColumn}`;
+		$("#snacman").appendTo(leftMoveDivID);
 	}
 	else if (e.keyCode == '38'){
-		placeSpaceship(((rows + --curRow)%rows).toString() + curCol.toString(), "snacman");
+		currentRow--
+		if (currentRow < 0 ) {
+			currentRow = (rows - 1);
+		}
+		let upMoveDivID = `#${currentRow}r${currentColumn}`;
+		$("#snacman").appendTo(upMoveDivID);
 	}
 	else if (e.keyCode == '40'){
-		placeSpaceship((++curRow%rows).toString() + curCol.toString(), "snacman");
+		currentRow++;
+		if (currentRow >= rows ) {
+			currentRow = 0;
+		}
+		let downMoveDivID = `#${currentRow}r${currentColumn}`;
+		$("#snacman").appendTo(downMoveDivID);
 	}
 	else if (e.keyCode == '13' || e.keyCode == '32'){
 			if (chewable){
 			chew();
 			munchCheck();
 		}
+	}
+}
+var munchCheck = function(){
+	if (gameSongs[$('div#' + currentRow + "r" + currentColumn).text()] && lives) {
+		++numCorrect;
+		score += 100;
+		$('#gamePointTotal').text(score);
+		progressBarValue += progressBarPercentage;
+		$('#progressBar').css("width", progressBarValue + '%');
+		$('div#' + currentRow + "r" + currentColumn).css("color", "#5dfc0a");
+		setTimeout(function(){$('div#' + currentRow + "r" + currentColumn + " p").remove();}, 30);
+		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
+		if (numCorrect == numToWin){
+			setCookie("bob", 1, 1);
+			celebrate();
+		}
+	}
+	else if ( ( $('div#' + currentRow + "r" + currentColumn + " p").text() == 'Wrong!' ) || ( $('div#' + currentRow + "r" + currentColumn + " p").text() == 'no snacs!' ) ||  ( $('div#' + currentRow + "r" + currentColumn).html() === " " ) ) {
+		$('div#' + currentRow + "r" + currentColumn + " p").text("no snacs!");
+	}
+	else if (lives > 0){
+		$('div#' + currentRow + "r" + currentColumn + " p").text("Wrong!");
+		$('div#' + currentRow + "r" + currentColumn + " p").css("color", "red");
+		lifeCheck(--lives);
+		die();
+	}
+	else{
+		clearInterval(clock);
+		gameOver();
 	}
 }

@@ -50,6 +50,6 @@ var songs = Object.keys(gameSongs);
 drawLives(2);
 
 drawBoard();
-placeSpaceship(spacePos, "snacman");
-placeSpaceship(badGuyPos1, "badGuy1");
+placeSnacman();
+//placeSpaceship(badGuyPos1, "badGuy1");
 stateChange();

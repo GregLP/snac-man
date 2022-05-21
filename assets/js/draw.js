@@ -17,8 +17,8 @@ let cols = 5;
 var left_offset = window.innerWidth/4;
 var top_offset = window.innerHeight/9.5;
 var dim = window.innerHeight/cols;
-spacePos = "00";
-badGuyPos1 = "33";
+let spacePos = "00";
+let badGuyPos1 = "33";
 var lives = 3;
 var numCorrect = 0;
 let progressBarValue = 0;
@@ -48,24 +48,31 @@ var drawLives = function(lives){
 
 //Draws the actual gameboard
 var drawBoard = function(){
-	var left_offset = window.innerWidth/4;
-	var top_offset = window.innerHeight/8.5;
-    document.write(` <div id="board" style="top: ${top_offset}px; left: ${left_offset}px; height: ${window.innerHeight/1.5}px; width: ${window.innerWidth/1.25}px;"> `);
+	//var left_offset = window.innerWidth/4;
+	//var top_offset = window.innerHeight/8.5;
+    document.write(` <main><div id="gameBoard" class="game-container"> `);
 	for (var i = 0; i < rows; i++){
-		left_offset = window.innerWidth/4;
+		//left_offset = window.innerWidth/4;
 		for (var j = 0; j < cols; j++){
-            document.write(` <div id="${i.toString() + "r" + j.toString()}" class="cell" style="top:${top_offset}px; left:${left_offset}px; height: ${dim}px; width: ${dim}px;"><p>${songs.pop()}</p></div> `);
+            document.write(` <div id="${i.toString() + "r" + j.toString()}" class="cell"><p>${songs.pop()}</p></div>`);
 			left_offset += dim;
 		}
 		top_offset += dim;
 	}
-	document.write(`</div>`);
-	document.write(`<img id="snacman" src="assets/img/eat/eat1.png" />`);
+	document.write(`</div></main>`);
 	document.write(`<img id="badGuy1" src="assets/img/tvbadguy.png" />`);
 };
 
 
 //Creates new function placeSpaceship() that adds the ufo to the game
+
+function placeSnacman() {
+    const snacmanStartingCell = document.getElementById("0r0");
+    const drawSnacman = `<img id="snacman" src="assets/img/svg/snacman.svg" />`;
+    snacmanStartingCell.insertAdjacentHTML("beforeend", drawSnacman);
+}
+
+/*
 var placeSpaceship = function(ufo, id){
 	if (id == "snacman")
 		spacePos = ufo;
@@ -74,7 +81,7 @@ var placeSpaceship = function(ufo, id){
 	var new_top_offset = top_offset/0.50 + dim*(Number(ufo[0]));
 	document.getElementById(id).style.left = new_left_offset + "px";
 	document.getElementById(id).style.top = new_top_offset + "px";
-};
+}; */
 
 //Creates new function placeBadGuy() that adds badguy to game
 var placeBadGuy = function(ufo, id){
@@ -90,6 +97,7 @@ var placeBadGuy = function(ufo, id){
 };
 
 //Creates a new function placePrizes() that adds the prizes to the game
+/*
 var placePrizes = function(prizes){
 	var pos = "";
 	var id = "";
@@ -103,7 +111,7 @@ var placePrizes = function(prizes){
 		document.getElementById(id).style.top = new_top_offset + "px";
 	}
 }(3);
-
+*/
 var moves = setInterval(function(){
     moveBadGuys("badGuy1");
 }, 1500);
