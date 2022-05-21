@@ -259,6 +259,9 @@ var munchCheck = function(){
 			celebrate();
 		}
 	}
+	else if ( ( $('div#' + spacePos[0] + "r" + spacePos[1]).text() == 'Wrong!' ) || ( $('div#' + spacePos[0] + "r" + spacePos[1]).text() == 'No snacs!' ) ||  ( $('div#' + spacePos[0] + "r" + spacePos[1]).html() === " " ) ) {
+		$('div#' + spacePos[0] + "r" + spacePos[1]).text("No snacs!");
+	}
 	else if (lives > 0){
 		$('div#' + spacePos[0] + "r" + spacePos[1]).text("Wrong!");
 		$('div#' + spacePos[0] + "r" + spacePos[1]).css("color", "red");

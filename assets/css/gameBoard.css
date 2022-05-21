@@ -1,13 +1,4 @@
-*{
-    box-sizing: border-box;
-}
-
-html {
-    width:760px;
-}
-
 body{
-    background-color:#ffffff;
     font-style: bold;
     color: #black;
     word-wrap: break-word;
@@ -79,62 +70,62 @@ img{
   font-size: 2em;
 }
 
-/*
-#progress{
-
-  z-index: 1;
-  position:absolute;
-  background-color: #5dfc0a;
-  border-radius: 5px;
-  border-color: gray;
-  border-style: solid;
-
+#playView {
+  background-color: #fee090;
+}
+#gameLivesRemaining {
+  flex: 1 0 10%;
+}
+#gameTimer {
+  flex: 1 0 10%;
+}
+#gameTitle {
+  flex: 4 60%;
+}
+#gamePointTotal {
+  flex: 1 0 10%;
+}
+#backButton {
+  flex: 1 0 10%;
 }
 
-#empty_progress{
+#gameTitle {
+  font-size: 2.75rem;
+  text-align: center;
+  align-self: center;
+  text-transform: uppercase;
+  font-weight: 700;
+}
 
-  border-radius: 5px;
-  border-color: gray;
-  border-style: solid;
+.text-2rem {
+    font-size: 2rem;
+}
+img.life-remaining {
+    position: relative;
+}
+td {
+  width: calc(97vw / 5);
+  height: calc(80vh / 4);
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+#playView {
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+footer {
   position: absolute;
-  z-index: -1;
-  background-color: red;
-
+  bottom: 0;
+  width: 100%;
 }
-
-
-#progress_label{
-
- 	padding:2px 2px 0px 2px;
-	text-align: center;
-	color: black;
-    border-radius: 3px;
-    text-decoration: none;
+main {
+  height: 90vh;
 }
-*/
-
-/*
-#timer{
-
-  	  text-align: center;
-      position:fixed;
-      color: black;
-      width:10%;
-      top:4%;
-      left:5%;
-      font-size: 2.8em;
+header {
+  height: 10vh;
 }
-
-
-#munchers{
- 	  text-align: center;
-      position:fixed;
-      color: black;
-      font-size: 1.5em;
-      left:26.4%;
-      width: 50%;
-      top:0%;
-      text-decoration: none;
-
+table {
+    margin: 0 auto;
 }
-*/
