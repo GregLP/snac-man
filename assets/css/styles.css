@@ -1,1 +1,54 @@
+#playView {
+  background-color: #fee090;
+}
+#gameLivesRemaining {
+  flex: 0 0 10%;
+}
+#gameTimer {
+  flex: 0 0 10%;
+}
+#gameTitle {
+  flex: 1 60%;
+}
+#gamePointTotal {
+  flex: 0 0 10%;
+}
+#backButton {
+  flex: 0 0 10%;
+}
 
+
+#backButton {
+  text-align: right;
+}
+
+.text-2rem {
+    font-size: 2rem;
+}
+
+td {
+  width: calc(97vw / 5);
+  height: calc(80vh / 4);
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+#playView {
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+main {
+  height: 90vh;
+}
+header {
+  height: 10vh;
+}
+table {
+    margin: 0 auto;
+}
