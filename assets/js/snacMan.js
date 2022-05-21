@@ -52,4 +52,4 @@ drawLives(2);
 drawBoard();
 placeSnacman();
 //placeSpaceship(badGuyPos1, "badGuy1");
-stateChange();
+//stateChange();

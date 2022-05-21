@@ -11,13 +11,13 @@ var chew = function(){
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat3.png'}, 140);
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat2.png'}, 160);
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/svg/snacman.svg';
-		$('#snacman').css('top', top + "px");}, 180);
+		$('#snacman').css('top', "auto");}, 180);
 };
 
 var deathFrameTimeout = function(i){
 	setTimeout(function(){
 		document.getElementById('snacman').src = 'assets/img/die/die' + (i + 1) + '.png';
-		$('#snacman').css('top', (200 + i*30) + "px");
+		$('#snacman').css('top', "auto");
 	}, i*50);
 };
 
@@ -32,7 +32,7 @@ var die = function(){
 	}
 
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/svg/snacman.svg';
-		$('#snacman').css('top', "800px");
+		$('#snacman').css('top', "auto");
 	}, 1000);
 };
 
@@ -119,7 +119,7 @@ var addClickHandler = function(i, j){
 		}
 	});
 };
-*/
+
 var addDoubleClickHandler = function(i, j){
 	$('div#' + i.toString() + "r" + j.toString()).dblclick(function(){
 		if (gameSongs[$('div#' + i.toString() + "r" + j.toString()).text()] && lives && i.toString() + j.toString() == spacePos){
@@ -145,7 +145,7 @@ var stateChange = function(){
 		}
 	}
 };
-
+*/
 var lifeCheck = function(lives, hit){
 	if (lives === 0){
 		clearInterval(moves);
@@ -157,8 +157,8 @@ var lifeCheck = function(lives, hit){
 	var	alertText = (lives == 0) ? happened + "You Lose!" : happened + "You have " + lives + (lives > 1 ? " lives" : " life") + " left!";
 	spacePos = "00";
 	badGuyPos1 = "33";
-	setTimeout(function(){
-		placeSnacman();}, 1050);
+	//setTimeout(function(){
+		//placeSnacman();}, 1050);
 		//placeSpaceship(badGuyPos1, "badGuy1");}, 1050);
 };
 
@@ -248,6 +248,35 @@ var spaceCheck = setInterval(function(){
 }, 250);
 */
 
+var munchCheck = function(){
+	if (gameSongs[$('div#' + currentRow + "r" + currentColumn).text()] && lives) {
+		++numCorrect;
+		score += 100;
+		$('#gamePointTotal').text(score);
+		progressBarValue += progressBarPercentage;
+		$('#progressBar').css("width", progressBarValue + '%');
+		$('div#' + currentRow + "r" + currentColumn).css("color", "#5dfc0a");
+		setTimeout(function(){$('div#' + currentRow + "r" + currentColumn + " p").remove();}, 30);
+		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
+		if (numCorrect == numToWin){
+			setCookie("bob", 1, 1);
+			celebrate();
+		}
+	}
+	else if ( ( $('div#' + currentRow + "r" + currentColumn + " p").text() == 'Wrong!' ) || ( $('div#' + currentRow + "r" + currentColumn + " p").text() == 'no snacs!' ) ||  ( $('div#' + currentRow + "r" + currentColumn).html() === " " ) ) {
+		$('div#' + currentRow + "r" + currentColumn + " p").text("no snacs!");
+	}
+	else if (lives > 0){
+		$('div#' + currentRow + "r" + currentColumn + " p").text("Wrong!");
+		$('div#' + currentRow + "r" + currentColumn + " p").css("color", "red");
+		lifeCheck(--lives);
+		die();
+	}
+	else{
+		clearInterval(clock);
+		gameOver();
+	}
+}
 
 
 let currentRow = 0;
@@ -290,34 +319,5 @@ onkeydown = function(e){
 			chew();
 			munchCheck();
 		}
-	}
-}
-var munchCheck = function(){
-	if (gameSongs[$('div#' + currentRow + "r" + currentColumn).text()] && lives) {
-		++numCorrect;
-		score += 100;
-		$('#gamePointTotal').text(score);
-		progressBarValue += progressBarPercentage;
-		$('#progressBar').css("width", progressBarValue + '%');
-		$('div#' + currentRow + "r" + currentColumn).css("color", "#5dfc0a");
-		setTimeout(function(){$('div#' + currentRow + "r" + currentColumn + " p").remove();}, 30);
-		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
-		if (numCorrect == numToWin){
-			setCookie("bob", 1, 1);
-			celebrate();
-		}
-	}
-	else if ( ( $('div#' + currentRow + "r" + currentColumn + " p").text() == 'Wrong!' ) || ( $('div#' + currentRow + "r" + currentColumn + " p").text() == 'no snacs!' ) ||  ( $('div#' + currentRow + "r" + currentColumn).html() === " " ) ) {
-		$('div#' + currentRow + "r" + currentColumn + " p").text("no snacs!");
-	}
-	else if (lives > 0){
-		$('div#' + currentRow + "r" + currentColumn + " p").text("Wrong!");
-		$('div#' + currentRow + "r" + currentColumn + " p").css("color", "red");
-		lifeCheck(--lives);
-		die();
-	}
-	else{
-		clearInterval(clock);
-		gameOver();
 	}
 }
