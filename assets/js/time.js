@@ -36,7 +36,7 @@ var setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_second
 		else {
 			seconds = 0;
 			$('#timer').css("visibility", "visible");
-			alert("Game Over!");
+			gameOver();
 			clearInterval(clock);
 			clearInterval(blink);
 

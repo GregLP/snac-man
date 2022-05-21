@@ -36,6 +36,12 @@ var die = function(){
 	}, 1000);
 };
 
+function gameOver() {
+	$('#game_over').css("visibility", "visible");
+	let loser_text = "Game Over<br /><br />A fatal exception has occurred:<br /><br />You Lose!<br /><br />Score:0";
+	$('#game_over').html(loser_text);
+}
+
 /*
 var prize1Action = function(){
 
@@ -144,6 +150,7 @@ var lifeCheck = function(lives, hit){
 	if (lives === 0){
 		clearInterval(moves);
 		clearInterval(spaceCheck);
+		gameOver();
 	}
 	$("#life" + (lives - 1)).css("visibility", "hidden");
 	var happened = (hit ? "Boom! " : "Wrong! ");
@@ -239,14 +246,13 @@ var spaceCheck = setInterval(function(){
 var munchCheck = function(){
 	if (gameSongs[$('div#' + spacePos[0] + "r" + spacePos[1]).text()] && lives){
 		++numCorrect;
+		score += 100;
 		$('#gamePointTotal').text(score);
 		progressBarValue += progressBarPercentage;
 		$('#progressBar').css("width", progressBarValue + '%');
 		$('div#' + spacePos[0] + "r" + spacePos[1]).css("color", "#5dfc0a");
 		setTimeout(function(){$('div#' + spacePos[0] + "r" + spacePos[1]).text(" ");}, 30);
-		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
-		//$('#progress_label').text(numText);
-		score += 100;
+		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");		
 		if (numCorrect == numToWin){
 			setCookie("bob", 1, 1);
 			celebrate();
@@ -260,9 +266,7 @@ var munchCheck = function(){
 	}
 	else{
 		clearInterval(clock);
-		$('#game_over').css("visibility", "visible");
-		var winner_text = "Game Over<br /><br />A fatal exception has occurred:<br /><br />You Lose!<br /><br />Score:0";
-		$('#game_over').html(winner_text);
+		gameOver();
 	}
 }
 
