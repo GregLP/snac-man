@@ -1,0 +1,25 @@
+svg.logo .line {
+  fill: none;
+  stroke: #231f20;
+  stroke-miterlimit: 10;
+  stroke-width: .5px; }
+svg.logo text {
+  fill: #212121;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6px; }
+svg.logo .eye-pupil {
+  fill: #212121;
+  stroke: #231f20;
+  stroke-miterlimit: 10;
+  stroke-width: .25px; }
+svg.logo .eye-whites {
+  fill: #fff;
+  stroke: #212121;
+  stroke-miterlimit: 10;
+  stroke-width: .25px; }
+svg.logo .hamburger {
+  fill: #a5712a;
+  stroke: #a5712a;
+  stroke-miterlimit: 10; }
+
+/*# sourceMappingURL=main.css.map */
