@@ -1,23 +1,23 @@
 var chew = function(){
-	var top = parseInt($('#test').css('top'));
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat2.png';
-		$('#test').css('top', (top - 45) + "px");});
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat3.png'}, 20);
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat4.png'}, 40);
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat5.png'}, 60);
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat6.png'}, 80);
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat5.png'}, 100);
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat4.png'}, 120);
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat3.png'}, 140);
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat2.png'}, 160);
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat1.png';
-		$('#test').css('top', top + "px");}, 180);
+	var top = parseInt($('#snacman').css('top'));
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat2.png';
+		$('#snacman').css('top', (top - 45) + "px");});
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat3.png'}, 20);
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat4.png'}, 40);
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat5.png'}, 60);
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat6.png'}, 80);
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat5.png'}, 100);
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat4.png'}, 120);
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat3.png'}, 140);
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat2.png'}, 160);
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat1.png';
+		$('#snacman').css('top', top + "px");}, 180);
 };
 
 var deathFrameTimeout = function(i){
 	setTimeout(function(){
-		document.getElementById('test').src = 'assets/img/die/die' + (i + 1) + '.png'; 
-		$('#test').css('top', (200 + i*30) + "px");
+		document.getElementById('snacman').src = 'assets/img/die/die' + (i + 1) + '.png';
+		$('#snacman').css('top', (200 + i*30) + "px");
 	}, i*50);
 };
 
@@ -30,19 +30,19 @@ var die = function(){
 	for (var i = 0; i < 20; i++){
 		deathFrameTimeout(i);
 	}
-	
-	setTimeout(function(){ document.getElementById('test').src = 'assets/img/eat/eat1.png';
-		$('#test').css('top', "800px");
-	}, 1000);   
+
+	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat1.png';
+		$('#snacman').css('top', "800px");
+	}, 1000);
 };
 
 var prize1Action = function(){
-	
+
 	var current_height = document.getElementById('progress').style.height;
 	var current_top = document.getElementById('progress').style.top;
 	var wrongAnswers = [];
 	for (i in games[puzzle].puzzle){
-		if(games[puzzle]["puzzle"][i] == 0){ 
+		if(games[puzzle]["puzzle"][i] == 0){
 			wrongAnswers.push(i);
 		}
 	}
@@ -108,7 +108,7 @@ var addClickHandler = function(i, j){
 			}
 		}
 		else{
-			moveSpaceship(i.toString() + j.toString(), "test");
+			moveSpaceship(i.toString() + j.toString(), "snacman");
 		}
 	});
 };
@@ -123,14 +123,11 @@ var addDoubleClickHandler = function(i, j){
 			}
 		}
 		else if (i.toString() + j.toString() == spacePos && lives){
-		
+
 			$('div#' + i.toString() + "r" + j.toString()).text("NOPE!");
 			$('div#' + i.toString() + "r" + j.toString()).css("color", "red");
-			lifeCheck(--lives); 
-		}
-		
-			                    										});
-
+			lifeCheck(--lives);
+		}});
 };
 
 var stateChange = function(){
@@ -143,21 +140,20 @@ var stateChange = function(){
 };
 
 var lifeCheck = function(lives, hit){
-	if (lives <= 0){
+	if (lives === 0){
 		clearInterval(moves);
 		clearInterval(spaceCheck);
 	}
 	$("#life" + (lives - 1)).css("visibility", "hidden");
-	//(hit ? evalSound('crash') : evalSound('incorrect'));
 	var happened = (hit ? "Boom! " : "Wrong! ");
 	var	alertText = (lives == 0) ? happened + "You Lose!" : happened + "You have " + lives + (lives > 1 ? " lives" : " life") + " left!";
 	//setTimeout(function(){alert(alertText)}, 400);
 	spacePos = "00";
 	badGuyPos1 = "33";
 	setTimeout(function(){
-		placeSpaceship(spacePos, "test");
+		placeSpaceship(spacePos, "snacman");
 		placeSpaceship(badGuyPos1, "badGuy1");}, 1050);
-}
+};
 
 var moveBadGuys = function(id){
 	badGuy = (id[6] == 1) ? badGuyPos1 : badGuyPos2;
@@ -184,7 +180,7 @@ var moveSpaceship = function(ufo, id){
 			placeSpaceship((++curRow).toString() + curCol.toString(), id);
 		else if (curRow > nextRow)
 			placeSpaceship((--curRow).toString() + curCol.toString(), id);
-		else 
+		else
 			clearInterval(move);
 		}, 150);
 };
@@ -201,7 +197,7 @@ var celebrate = function(){
 			stars = 2;
 		else if (score > 2000)
 			stars = 1;
-		var winner_text = "<span>Game Over</span><br /><span>You Win!</span><br /><br /><span>Time: " + $('#timer').text() + "</span><br /><span>Score: " + score + 
+		var winner_text = "<span>Game Over</span><br /><span>You Win!</span><br /><br /><span>Time: " + $('#timer').text() + "</span><br /><span>Score: " + score +
 			"</span><br />";
 
 		for (var i = 0; i < stars; i++)
@@ -213,7 +209,7 @@ var celebrate = function(){
 
 var spaceCheck = setInterval(function(){
 	for (var i = 1; i <= 3; i++){
-			if ((parseInt($('#test').css("left")) == parseInt($('#prize' + i).css("left"))) && (parseInt($('#test').css("top"))) == parseInt($('#prize' + i).css("top"))){
+			if ((parseInt($('#snacman').css("left")) == parseInt($('#prize' + i).css("left"))) && (parseInt($('#snacman').css("top"))) == parseInt($('#prize' + i).css("top"))){
 				if (chewablePrizes[i - 1] && availablePrizes[i - 1]){
 					availablePrizes[i - 1] = false;
 					chew();
@@ -274,16 +270,16 @@ onkeydown = function(e){
 	curRow = Number(spacePos[0]);
 	curCol = Number(spacePos[1]);
 	if (e.keyCode == '39'){
-		placeSpaceship(curRow.toString() + (++curCol%cols).toString(), "test");
+		placeSpaceship(curRow.toString() + (++curCol%cols).toString(), "snacman");
 	}
 	else if (e.keyCode == '37'){
-		placeSpaceship(curRow.toString() + ((cols + --curCol)%cols).toString(), "test");
+		placeSpaceship(curRow.toString() + ((cols + --curCol)%cols).toString(), "snacman");
 	}
 	else if (e.keyCode == '38'){
-		placeSpaceship(((rows + --curRow)%rows).toString() + curCol.toString(), "test");
+		placeSpaceship(((rows + --curRow)%rows).toString() + curCol.toString(), "snacman");
 	}
 	else if (e.keyCode == '40'){
-		placeSpaceship((++curRow%rows).toString() + curCol.toString(), "test");
+		placeSpaceship((++curRow%rows).toString() + curCol.toString(), "snacman");
 	}
 	else if (e.keyCode == '13' || e.keyCode == '32'){
 			if (chewable){
