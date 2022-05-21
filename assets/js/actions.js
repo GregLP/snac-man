@@ -36,6 +36,7 @@ var die = function(){
 	}, 1000);
 };
 
+/*
 var prize1Action = function(){
 
 	var current_height = document.getElementById('progress').style.height;
@@ -97,13 +98,13 @@ var addPrizeClick = function(i){
 for (var i = 1; i <= 3; i++){
 	addPrizeClick(i);
 }
+*/
 
 var addClickHandler = function(i, j){
 	 $('div#' + i.toString() + "r" + j.toString()).click(function(){
 		if (spacePos == (i.toString() + j.toString())){
 			if (chewable){
 				chew();
-				//evalSound('nom');
 				munchCheck();
 			}
 		}
@@ -214,6 +215,7 @@ var spaceCheck = setInterval(function(){
 					availablePrizes[i - 1] = false;
 					chew();
 					score += 150;
+					document.getElementById("gamePointTotal").innerHTML = score;
 					$('#prize' + i).css("visibility", "hidden");
 					prizeActions[i - 1]();
 				}
@@ -239,14 +241,14 @@ var spaceCheck = setInterval(function(){
 var munchCheck = function(){
 	if (gameSongs[$('div#' + spacePos[0] + "r" + spacePos[1]).text()] && lives){
 		++numCorrect;
-		var current_height = document.getElementById('progress').style.height;
-		var current_top = document.getElementById('progress').style.top;
+		$('#gamePointTotal').text(score);
+		progressBarValue += progressBarPercentage;
+		$('#progressBar').css("width", progressBarValue + '%');
 		$('div#' + spacePos[0] + "r" + spacePos[1]).css("color", "#5dfc0a");
 		setTimeout(function(){$('div#' + spacePos[0] + "r" + spacePos[1]).text(" ");}, 30);
-		$('div#progress').css("top", parseInt(current_top) - progressTotalHeight/numToWin/1.01);
-		$('div#progress').css("height", parseInt(current_height) + progressTotalHeight/numToWin);
 		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
-		$('#progress_label').text(numText);
+		//$('#progress_label').text(numText);
+		score += 100;
 		if (numCorrect == numToWin){
 			setCookie("bob", 1, 1);
 			celebrate();
@@ -284,7 +286,6 @@ onkeydown = function(e){
 	else if (e.keyCode == '13' || e.keyCode == '32'){
 			if (chewable){
 			chew();
-			//evalSound('nom');
 			munchCheck();
 		}
 	}

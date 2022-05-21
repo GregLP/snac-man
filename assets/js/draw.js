@@ -13,9 +13,7 @@ var songs = Object.keys(gameSongs);
 
 let rows = 4;
 let cols = 5;
-var progressTotalHeight = window.innerHeight/1.8;
-var progress_left_offset = window.innerWidth/16;
-var progress_top_offset = window.innerHeight/1.26;
+
 var left_offset = window.innerWidth/4;
 var top_offset = window.innerHeight/9.5;
 var dim = window.innerHeight/cols;
@@ -23,6 +21,7 @@ spacePos = "00";
 badGuyPos1 = "33";
 var lives = 3;
 var numCorrect = 0;
+
 
 var findNumToWin = function(obj){
 	var numToWin = 0;
@@ -33,7 +32,8 @@ var findNumToWin = function(obj){
 };
 
 numToWin = findNumToWin(gameSongs);
-
+let progressBarValue = 0;
+let progressBarPercentage = 100 / findNumToWin(gameSongs);
 document.write("<div id=\"celebrate\"><h2>You Win!</h2></div>");
 
 var drawLives = function(lives){
@@ -43,33 +43,6 @@ var drawLives = function(lives){
         lives_container.insertAdjacentHTML("beforeend", lives_remaining_html);
 	}
 };
-
-
-
-/*
-var drawPrizeClicks = function(prizes){
-	var prizes_offset_left = left_offset + cols*dim + dim/2;
-	//var prizeArray = ["snacBadGuy.png", "snacRemove.png", "snacTime.png"];
-	var prizes_offset_top = 30;
-	for (var i = 0; i < prizes; i++){
-		document.write("<img src=\"assets/img/circle.svg\" id=\"prizeClick" + (i + 1) + "\" style=\"top:" + prizes_offset_top + "px; left:" + (prizes_offset_left + i*100) + "px;\" />");
-	}
-}(3);
-*/
-
-// Writes the numbers to win below the progress bar
-document.write("<div id=\"progress_label\" style=\"top:" + progress_top_offset/0.98 + "px; left:" + progress_left_offset + "px; height:" + dim/7.7 +
-		"px; width:" + dim/1.9 + "px;\"><em>" + numToWin + " To Win</em></div>");
-
-//writes the green progress bar that overwrites the empty progress bar
-document.write("<div id=\"progress\" style=\"top:" + progress_top_offset + "px; left:" + progress_left_offset + "px; height:" + 0 +
-		"px; width:" + dim/2 + "px;\"></div>");
-
-//writes the full progress bar with red bg
-document.write("<div id=\"empty_progress\" style=\"top:" + (progress_top_offset - progressTotalHeight) + "px; left:" + progress_left_offset + "px; height:" + progressTotalHeight +
-		"px; width:" + dim/2 + "px;\"></div>");
-
-
 
 //Draws the actual gameboard
 var drawBoard = function(){
@@ -135,3 +108,25 @@ var placePrizes = function(prizes){
 var moves = setInterval(function(){
     moveBadGuys("badGuy1");
 }, 1500);
+
+
+
+//var progressTotalHeight = window.innerHeight/1.8;
+//var progress_left_offset = window.innerWidth/16;
+//var progress_top_offset = window.innerHeight/1.26;
+/*
+var drawPrizeClicks = function(prizes){
+	var prizes_offset_left = left_offset + cols*dim + dim/2;
+	//var prizeArray = ["snacBadGuy.png", "snacRemove.png", "snacTime.png"];
+	var prizes_offset_top = 30;
+	for (var i = 0; i < prizes; i++){
+		document.write("<img src=\"assets/img/circle.svg\" id=\"prizeClick" + (i + 1) + "\" style=\"top:" + prizes_offset_top + "px; left:" + (prizes_offset_left + i*100) + "px;\" />");
+	}
+}(3);
+document.write("<div id=\"progress_label\" style=\"top:" + progress_top_offset/0.98 + "px; left:" + progress_left_offset + "px; height:" + dim/7.7 +
+		"px; width:" + dim/1.9 + "px;\"><em>" + numToWin + " To Win</em></div>");
+document.write("<div id=\"progress\" style=\"top:" + progress_top_offset + "px; left:" + progress_left_offset + "px; height:" + 0 +
+		"px; width:" + dim/2 + "px;\"></div>");
+document.write("<div id=\"empty_progress\" style=\"top:" + (progress_top_offset - progressTotalHeight) + "px; left:" + progress_left_offset + "px; height:" + progressTotalHeight +
+		"px; width:" + dim/2 + "px;\"></div>");
+*/

@@ -1,56 +1,45 @@
 *{
-
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-
-width:760px;
-
+    width:760px;
 }
 
 body{
-
-	background-color:#ffffff;
-	font-style: bold;
-	color: #black;
-	word-wrap: break-word;
-	font-family: Arial, Helvetica, sans-serif;
-	text-align:center;
-
+    background-color:#ffffff;
+    font-style: bold;
+    color: #black;
+    word-wrap: break-word;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align:center;
 }
 
 #snacman{
-
-  z-index:10001;
+    z-index:10001;
 }
 
 #board div {
-	position: fixed;
+    position: fixed;
 }
 
 #board div div {
-
-	position:fixed;
-	background-color: #fee090;
-	padding:0px 0px 0px 0px;
-	overflow:hidden;
+    position:fixed;
+    background-color: #fee090;
+    padding:0;
+    overflow:hidden;
 }
 
 .cell{
-
    	border-color: black;
    	border-style: solid;
 }
 
-
 img{
-
  	width:50px;
  	height:50px;
  	position:fixed;
 }
-
 
 #celebrate{
  	position:fixed;
@@ -58,36 +47,39 @@ img{
  	visibility: hidden;
 }
 
-/*
-#timer{
-
-  	  text-align: center;
-      position:fixed;
-      color: black;
-      width:10%;
-      top:4%;
-      left:5%;
-      font-size: 2.8em;
-}
-*/
-
-#munchers{
- 	  text-align: center;
-      position:fixed;
-      color: black;
-      font-size: 1.5em;
-      left:26.4%;
-      width: 50%;
-      top:0%;
-      text-decoration: none;
-
-}
-
 #board{
-
   margin:auto;
 }
 
+#game_over{
+  background-color: blue;
+  color:#5dfc0a;
+  height:55%;
+  width:55%;
+  border-radius: 10px;
+  position:absolute;
+  z-index: 10002;
+  left:23.6%;
+  top:20%;
+  text-align: center;
+  font-size: 2.8em;
+  visibility: hidden;
+}
+
+.prize {
+  visibility: hidden;
+  z-index: 10000;
+}
+
+#bagGuy1{
+  border-radius: 100px;
+}
+
+#stars{
+  font-size: 2em;
+}
+
+/*
 #progress{
 
   z-index: 1;
@@ -110,6 +102,7 @@ img{
 
 }
 
+
 #progress_label{
 
  	padding:2px 2px 0px 2px;
@@ -118,35 +111,30 @@ img{
     border-radius: 3px;
     text-decoration: none;
 }
+*/
 
-#game_over{
+/*
+#timer{
 
-  background-color: blue;
-  color:#5dfc0a;
-  height:55%;
-  width:55%;
-  border-radius: 10px;
-  position:absolute;
-  z-index: 10002;
-  left:23.6%;
-  top:20%;
-  text-align: center;
-  font-size: 2.8em;
-  visibility: hidden;
+  	  text-align: center;
+      position:fixed;
+      color: black;
+      width:10%;
+      top:4%;
+      left:5%;
+      font-size: 2.8em;
 }
 
-.prize {
 
-  visibility: hidden;
-  z-index: 10000;
+#munchers{
+ 	  text-align: center;
+      position:fixed;
+      color: black;
+      font-size: 1.5em;
+      left:26.4%;
+      width: 50%;
+      top:0%;
+      text-decoration: none;
+
 }
-
-#bagGuy1{
-
-  border-radius: 100px;
-}
-
-#stars{
-
-  font-size: 2em;
-}
+*/

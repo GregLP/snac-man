@@ -2,33 +2,35 @@
   background-color: #fee090;
 }
 #gameLivesRemaining {
-  flex: 0 0 10%;
-}
-img.life-remaining {
-    position: relative;
+  flex: 1 0 10%;
 }
 #gameTimer {
-  flex: 0 0 10%;
+  flex: 1 0 10%;
 }
 #gameTitle {
-  flex: 1 60%;
+  flex: 4 60%;
 }
 #gamePointTotal {
-  flex: 0 0 10%;
+  flex: 1 0 10%;
 }
 #backButton {
-  flex: 0 0 10%;
+  flex: 1 0 10%;
 }
 
-
-#backButton {
-  text-align: right;
+#gameTitle {
+  font-size: 2.75rem;
+  text-align: center;
+  align-self: center;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .text-2rem {
     font-size: 2rem;
 }
-
+img.life-remaining {
+    position: relative;
+}
 td {
   width: calc(97vw / 5);
   height: calc(80vh / 4);
