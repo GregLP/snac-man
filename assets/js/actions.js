@@ -155,7 +155,6 @@ var lifeCheck = function(lives, hit){
 	$("#life" + (lives - 1)).css("visibility", "hidden");
 	var happened = (hit ? "Boom! " : "Wrong! ");
 	var	alertText = (lives == 0) ? happened + "You Lose!" : happened + "You have " + lives + (lives > 1 ? " lives" : " life") + " left!";
-	//setTimeout(function(){alert(alertText)}, 400);
 	spacePos = "00";
 	badGuyPos1 = "33";
 	setTimeout(function(){
@@ -212,6 +211,8 @@ var celebrate = function(){
 			winner_text += "<span id=\"stars\"> &#9733 </span>"
 
 		$('#game_over').html(winner_text);
+		clearInterval(clock);
+		clearInterval(blink);
 }, 200);
 }
 
@@ -252,7 +253,7 @@ var munchCheck = function(){
 		$('#progressBar').css("width", progressBarValue + '%');
 		$('div#' + spacePos[0] + "r" + spacePos[1]).css("color", "#5dfc0a");
 		setTimeout(function(){$('div#' + spacePos[0] + "r" + spacePos[1]).text(" ");}, 30);
-		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");		
+		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
 		if (numCorrect == numToWin){
 			setCookie("bob", 1, 1);
 			celebrate();

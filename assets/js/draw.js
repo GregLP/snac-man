@@ -21,6 +21,8 @@ spacePos = "00";
 badGuyPos1 = "33";
 var lives = 3;
 var numCorrect = 0;
+let progressBarValue = 0;
+let progressBarPercentage;
 
 
 var findNumToWin = function(obj){
@@ -32,9 +34,9 @@ var findNumToWin = function(obj){
 };
 
 numToWin = findNumToWin(gameSongs);
-let progressBarValue = 0;
-let progressBarPercentage = 100 / findNumToWin(gameSongs);
-document.write("<div id=\"celebrate\"><h2>You Win!</h2></div>");
+progressBarPercentage = 100 / findNumToWin(gameSongs);
+
+document.write(`<div id="celebrate"><h2>You Win!</h2></div>`);
 
 var drawLives = function(lives){
 	for (var i = 0; i < lives; i++){
@@ -48,21 +50,18 @@ var drawLives = function(lives){
 var drawBoard = function(){
 	var left_offset = window.innerWidth/4;
 	var top_offset = window.innerHeight/8.5;
-	document.write("<div id=\"board\" style=\" top:" + top_offset + "px; left:" + left_offset + "px; height:" + window.innerHeight/1.5 +
-		"px; width:" + window.innerWidth/1.25 + "px;\">");
+    document.write(` <div id="board" style="top: ${top_offset}px; left: ${left_offset}px; height: ${window.innerHeight/1.5}px; width: ${window.innerWidth/1.25}px;"> `);
 	for (var i = 0; i < rows; i++){
 		left_offset = window.innerWidth/4;
 		for (var j = 0; j < cols; j++){
-			document.write("<div id=\"" + i.toString() + "r" + j.toString() + "\" class=\"cell\" style=\"top:" +
-				top_offset +"px; left: " + left_offset + "px; height:" + dim +"px; width:" + dim + "px;\">" + "<p>" + songs.pop() +
-				"</p>" + "</div>");
+            document.write(` <div id="${i.toString() + "r" + j.toString()}" class="cell" style="top:${top_offset}px; left:${left_offset}px; height: ${dim}px; width: ${dim}px;"<p>${songs.pop()}</p></div> `);
 			left_offset += dim;
 		}
 		top_offset += dim;
 	}
-	document.write("</div>");
-	document.write("<img id=\"snacman\" src=\"assets/img/eat/eat1.png\" />");
-	document.write("<img id=\"badGuy1\" src=\"assets/img/tvbadguy.png\" />");
+	document.write(`</div>`);
+	document.write(`<img id="snacman" src="assets/img/eat/eat1.png" />`);
+	document.write(`<img id="badGuy1" src="assets/img/tvbadguy.png" />`);
 };
 
 
