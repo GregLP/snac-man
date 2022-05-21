@@ -1,23 +1,20 @@
 body {
     background-image:url('../img/background.png');
 }
-.logo svg {
+header {
+    flex: 1 1 10%;
+}
+main {
+    flex: 8 8 80%;
+}
+footer {
+    flex: 1 1 10%;
+}
+.brand svg {
     width: auto;
     height: auto;
     max-width: 100%;
     max-height: 50vh;
-}
-header {
-    flex: 0 0 auto;
-}
-main {
-    flex: 1 0 auto;
-
-}
-#pageBlur {
-    background-color: #fee090;
-    border: 1px solid #212121;
-    border-radius: 25px;
 }
 #pageBlur {
   background-color: #fee090;
@@ -27,16 +24,9 @@ main {
   padding: 15px 30px;
   min-height: calc(100vh - 30px);
 }
-
-@media (min-width: 768px) {
-    #pageBlur {
-        margin: 25px 50px;
-        padding: 30px 50px;
-        min-height: calc(100vh - 60px);
-    }
+.copyright {
+  font-size: 1.7rem;
 }
-
-/* Buttons */
 .btn-puzzle {
     background-color: #265a88;
     border-color: #265a88;
@@ -50,7 +40,14 @@ main {
     row-gap: 10px;
 }
 
+
+
 @media (min-width: 768px) {
+    #pageBlur {
+        margin: 25px 50px;
+        padding: 30px 50px;
+        min-height: calc(100vh - 60px);
+    }
     .flex-item.puzzle {
         flex: 1 0 calc(50% - 20px);
     }

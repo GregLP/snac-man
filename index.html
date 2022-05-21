@@ -3,33 +3,35 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SNAC-MAN</title>
+    <title>snacman</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/global.css" rel="stylesheet">
+    <link href="assets/css/svg.css" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/logo.png">
 </head>
 <body>
     <div id="pageBlur" class="d-flex flex-column justify-content-between align-items-center">
         <header class="align-self-end">
-            <div id="settings" class="text-end">
+            <div id="settings">
                 <a href="settings.html"><svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 0 24 24" width="50px" fill="##000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></a>
             </div>
         </header>
         <main id="content" class="d-flex flex-column justify-content-evenly align-items-stretch">
-            <div class="container-logo mb-4">
-                <div class="logo d-flex flex-row justify-content-center align-items-center">
+            <div class="brand-container mb-4">
+                <div id="brand" class="brand d-flex flex-row justify-content-center align-items-center">
                     <?xml version="1.0" encoding="UTF-8"?>
-                    <svg id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.23 37.14">
-                        <path d="M30.67,11.3C29.52,5.18,23.45,.5,16.12,.5S2.71,5.18,1.56,11.3H30.67Z" style="fill:#a5712a; stroke:#a5712a; stroke-miterlimit:10;"/>
-                        <path d="M2.41,22.48c2.33,5.25,7.59,8.92,13.71,8.92s11.37-3.67,13.71-8.92H2.41Z" style="fill:#a5712a; stroke:#a5712a; stroke-miterlimit:10;"/>
-                        <path d="M15.12,3.75c0,1.12-.87,2.03-1.94,2.03s-1.94-.91-1.94-2.03,.87-2.03,1.94-2.03,1.94,.91,1.94,2.03Z" style="fill:#fff; stroke:#212121; stroke-miterlimit:10; stroke-width:.25px;"/>
-                        <path d="M21.65,3.61c0,1.12-.87,2.03-1.94,2.03s-1.94-.91-1.94-2.03,.87-2.03,1.94-2.03,1.94,.91,1.94,2.03Z" style="fill:#fff; stroke:#212121; stroke-miterlimit:10; stroke-width:.25px;"/>
-                        <path d="M21.25,4.42c0,.63-.48,1.15-1.08,1.15s-1.08-.51-1.08-1.15,.48-1.15,1.08-1.15,1.08,.51,1.08,1.15Z" style="fill:#212121; stroke:#231f20; stroke-miterlimit:10; stroke-width:.25px;"/>
-                        <path d="M13.84,3.15c0,.63-.48,1.15-1.08,1.15s-1.08-.51-1.08-1.15,.48-1.15,1.08-1.15,1.08,.51,1.08,1.15Z" style="fill:#212121; stroke:#231f20; stroke-miterlimit:10; stroke-width:.25px;"/>
-                        <text transform="translate(3.94 17.73)" style="fill:#212121; font-family:ArialMT, Arial; font-size:6px;"><tspan x="0" y="0">snacman</tspan></text>
-                        <line x1="14.64" y1="31.85" x2="14.64" y2="37.1" style="fill:none; stroke:#231f20; stroke-miterlimit:10; stroke-width:.5px;"/>
-                        <line x1="9.55" y1="36.89" x2="14.87" y2="36.89" style="fill:none; stroke:#231f20; stroke-miterlimit:10; stroke-width:.5px;"/>
-                        <line x1="18.98" y1="31.68" x2="18.98" y2="37.1" style="fill:none; stroke:#231f20; stroke-miterlimit:10; stroke-width:.5px;"/><line x1="18.78" y1="36.89" x2="24.1" y2="36.89" style="fill:none; stroke:#231f20; stroke-miterlimit:10; stroke-width:.5px;"/>
+                    <svg id="logo" class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.23 37.14">
+                        <path class="path path-1 hamburger hamburger-top" d="M30.67,11.3C29.52,5.18,23.45,.5,16.12,.5S2.71,5.18,1.56,11.3H30.67Z"/>
+                        <path class="path path-2 hamburger hamburger-bottom" d="M2.41,22.48c2.33,5.25,7.59,8.92,13.71,8.92s11.37-3.67,13.71-8.92H2.41Z"/>
+                        <path class="path path-3 eye eye-left eye-whites" d="M15.12,3.75c0,1.12-.87,2.03-1.94,2.03s-1.94-.91-1.94-2.03,.87-2.03,1.94-2.03,1.94,.91,1.94,2.03Z"/>
+                        <path class="path path-4 eye eye-right eye-whites" d="M21.65,3.61c0,1.12-.87,2.03-1.94,2.03s-1.94-.91-1.94-2.03,.87-2.03,1.94-2.03,1.94,.91,1.94,2.03Z"/>
+                        <path class="path path-5 eye eye-right eye-pupil" d="M21.25,4.42c0,.63-.48,1.15-1.08,1.15s-1.08-.51-1.08-1.15,.48-1.15,1.08-1.15,1.08,.51,1.08,1.15Z"/>
+                        <path class="path path-6 eye eye-left eye-pupil" d="M13.84,3.15c0,.63-.48,1.15-1.08,1.15s-1.08-.51-1.08-1.15,.48-1.15,1.08-1.15,1.08,.51,1.08,1.15Z"/>
+                        <text transform="translate(3.94 17.73)"><tspan x="0" y="0">snacman</tspan></text>
+                        <line class="line line-1 leg left-leg" x1="14.64" y1="31.85" x2="14.64" y2="37.1"/>
+                        <line class="line line-2 foot left-foot" x1="9.55" y1="36.89" x2="14.87" y2="36.89"/>
+                        <line class="line line-3 leg right-leg" x1="18.98" y1="31.68" x2="18.98" y2="37.1"/>
+                        <line class="line line-4 foot right-foot" x1="18.78" y1="36.89" x2="24.1" y2="36.89"/>
                     </svg>
                 </div>
             </div>
@@ -41,7 +43,7 @@
             </div>
         </main>
         <footer class="align-self-center">
-            <p id="copyright" class="mb-0"><small class="lead">&#169; 2022 snacman</small></p>
+            <p id="copyright" class="copyright lead mb-0"><small>&#169; 2022</small> snacman</p>
         </footer>
     </div>
 </body>
