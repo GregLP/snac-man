@@ -1,9 +1,26 @@
 .btn-puzzle {
-    background-color: #265a88;
-    border-color: #265a88;
+    background-color: $blue;
+    border-color: $blue;
     font-size: 2rem;
     width: 100%;
 }
 .btn-puzzle:hover {
-    background-color: #337ab7;;
+    background-color: $light-blue;;
+}
+
+button.btn-puzzle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button svg {
+    fill: white;
+    width: 35px;
+    height: 35px;
+    margin-left: 0px;
+}
+
+.flex-item a:hover {
+  text-decoration: none;
 }

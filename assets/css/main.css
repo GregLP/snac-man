@@ -57,8 +57,8 @@ body {
   visibility: hidden; }
 
 #game_over {
-  background-color: blue;
-  color: #5dfc0a;
+  background-color: #265a88;
+  color: white;
   height: 55%;
   width: 55%;
   border-radius: 10px;
@@ -144,6 +144,9 @@ td {
   border: 2px solid black;
   overflow: hidden; }
 
+.progress {
+  background-color: #212121; }
+
 .btn-puzzle {
   background-color: #265a88;
   border-color: #265a88;
@@ -153,9 +156,23 @@ td {
 .btn-puzzle:hover {
   background-color: #337ab7; }
 
+button.btn-puzzle {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+button svg {
+  fill: white;
+  width: 35px;
+  height: 35px;
+  margin-left: 0px; }
+
+.flex-item a:hover {
+  text-decoration: none; }
+
 svg.logo .line {
   fill: none;
-  stroke: #231f20;
+  stroke: #212121;
   stroke-miterlimit: 10;
   stroke-width: .5px; }
 svg.logo text {
@@ -164,7 +181,7 @@ svg.logo text {
   font-size: 6px; }
 svg.logo .eye-pupil {
   fill: #212121;
-  stroke: #231f20;
+  stroke: #212121;
   stroke-miterlimit: 10;
   stroke-width: .25px; }
 svg.logo .eye-whites {
