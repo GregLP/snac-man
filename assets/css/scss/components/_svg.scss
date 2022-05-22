@@ -27,8 +27,15 @@ svg.logo {
     }
 
     .hamburger {
-    fill:$svg-logo-hamburger;
+    fill: $brown-hamburger-bun;
     stroke:#a5712a;
     stroke-miterlimit:10;
     }
+}
+
+.brand svg {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 50vh;
 }

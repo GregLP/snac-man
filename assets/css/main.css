@@ -1,0 +1,196 @@
+.text-2rem {
+  font-size: 2rem; }
+
+header {
+  flex: 1 1 10%; }
+
+main {
+  flex: 8 8 80%; }
+
+footer {
+  flex: 1 1 10%; }
+
+.copyright {
+  font-size: 1.7rem; }
+
+body {
+  background-image: url("../img/background.png"); }
+
+#pageBlur {
+  background-color: #fee090;
+  border: 1px solid #212121;
+  border-radius: 25px;
+  margin: 10px 15px;
+  padding: 15px 30px;
+  min-height: calc(100vh - 30px); }
+
+@media (min-width: 768px) {
+  #pageBlur {
+    margin: 25px 50px;
+    padding: 30px 50px;
+    min-height: calc(100vh - 60px); } }
+.game body {
+  font-style: bold;
+  color: black;
+  word-wrap: break-word;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center; }
+.game #snacman {
+  position: absolute;
+  width: auto;
+  height: 18vh;
+  max-width: 100%;
+  max-height: 100%; }
+.game #board div div {
+  background-color: #fee090;
+  padding: 0;
+  overflow: hidden; }
+.game img {
+  width: 50px;
+  height: 50px; }
+.game .cell p {
+  font-size: 1.5rem; }
+
+#celebrate {
+  position: fixed;
+  left: 675px;
+  visibility: hidden; }
+
+#game_over {
+  background-color: blue;
+  color: #5dfc0a;
+  height: 55%;
+  width: 55%;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 10002;
+  left: 23.6%;
+  top: 20%;
+  text-align: center;
+  font-size: 2.8em;
+  visibility: hidden; }
+
+.prize {
+  visibility: hidden;
+  z-index: 10000; }
+
+#bagGuy1 {
+  border-radius: 100px; }
+
+#stars {
+  font-size: 2em; }
+
+#playView {
+  background-color: #fee090;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw; }
+
+#gameLivesRemaining {
+  flex: 1 0 10%; }
+
+#gameTimer {
+  flex: 1 0 10%; }
+
+#gameTitle {
+  flex: 4 60%; }
+
+#gamePointTotal {
+  flex: 1 0 10%; }
+
+#backButton {
+  flex: 1 0 10%; }
+
+#gameTitle {
+  font-size: 2.75rem;
+  text-align: center;
+  align-self: center;
+  text-transform: uppercase;
+  font-weight: 700; }
+
+#gameBoard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+
+.game-container .cell {
+  width: calc(97vw / 5);
+  height: calc(85vh / 4);
+  border: 2px solid black;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: black;
+  border-style: solid; }
+
+.play-view footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+.play-view main {
+  height: 90vh; }
+.play-view header {
+  height: 10vh; }
+.play-view table {
+  margin: 0 auto; }
+
+img.life-remaining {
+  position: relative; }
+
+td {
+  width: calc(97vw / 5);
+  height: calc(80vh / 4);
+  border: 2px solid black;
+  overflow: hidden; }
+
+.btn-puzzle {
+  background-color: #265a88;
+  border-color: #265a88;
+  font-size: 2rem;
+  width: 100%; }
+
+.btn-puzzle:hover {
+  background-color: #337ab7; }
+
+svg.logo .line {
+  fill: none;
+  stroke: #231f20;
+  stroke-miterlimit: 10;
+  stroke-width: .5px; }
+svg.logo text {
+  fill: #212121;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6px; }
+svg.logo .eye-pupil {
+  fill: #212121;
+  stroke: #231f20;
+  stroke-miterlimit: 10;
+  stroke-width: .25px; }
+svg.logo .eye-whites {
+  fill: #fff;
+  stroke: #212121;
+  stroke-miterlimit: 10;
+  stroke-width: .25px; }
+svg.logo .hamburger {
+  fill: #a5712a;
+  stroke: #a5712a;
+  stroke-miterlimit: 10; }
+
+.brand svg {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 50vh; }
+
+.puzzle-container {
+  row-gap: 10px; }
+
+@media (min-width: 768px) {
+  .flex-item.puzzle {
+    flex: 1 0 calc(50% - 20px); }
+
+  .puzzle-container {
+    column-gap: 10px; } }
+
+/*# sourceMappingURL=main.css.map */
