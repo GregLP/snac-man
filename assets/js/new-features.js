@@ -1,9 +1,13 @@
+let badGuyPos1 = "33";
 var badGuyPos2 = "99";
 var isBlue = false;
 var badGuyDead = false;
 var prize1Chewable = false;
 var chewablePrizes = [false, false, false];
 var availablePrizes = [true, true, true];
+var left_offset = window.innerWidth/4;
+var top_offset = window.innerHeight/9.5;
+var dim = window.innerHeight/cols;
 
 placeSpaceship(badGuyPos1, "badGuy1");
 stateChange();
@@ -195,7 +199,18 @@ var moveSpaceship = function(ufo, id){
 			clearInterval(move);
 		}, 150);
 };
-*/
+
+var placeBadGuy = function(ufo, id){
+	if (id == "badGuy1")
+		badGuyPos1 = ufo;
+	else
+		badGuyPos2 = ufo;
+
+	var new_left_offset = left_offset/0.9 + dim*(Number(ufo[1]));
+	var new_top_offset = top_offset/0.50 + dim*(Number(ufo[0]));
+	document.getElementById(id).style.left = new_left_offset + "px";
+	document.getElementById(id).style.top = new_top_offset + "px";
+};
 
 
 
@@ -226,3 +241,18 @@ var spaceCheck = setInterval(function(){
 		}
 	}
 }, 250);
+
+//document.write(`<div id="celebrate"><h2>You Win!</h2></div>`);
+
+/*
+var drawBoard = function(){
+    document.write(` <main><div id="gameBoard" class="game-container"> `);
+	for (var i = 0; i < rows; i++){
+		for (var j = 0; j < cols; j++){
+            document.write(` <div id="${i.toString() + "r" + j.toString()}" class="cell"><p>${songs.pop()}</p></div>`);
+		}
+	}
+	document.write(`</div></main>`);
+	document.write(`<img id="badGuy1" src="assets/img/tvbadguy.png" />`);
+};
+*/

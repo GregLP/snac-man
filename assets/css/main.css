@@ -16,7 +16,7 @@ footer {
 body {
   background-image: url("../img/background.png"); }
 
-#pageBlur {
+#pageContainer {
   background-color: #fee090;
   border: 1px solid #212121;
   border-radius: 25px;
@@ -25,7 +25,7 @@ body {
   min-height: calc(100vh - 30px); }
 
 @media (min-width: 768px) {
-  #pageBlur {
+  #pageContainer {
     margin: 25px 50px;
     padding: 30px 50px;
     min-height: calc(100vh - 60px); } }
@@ -147,28 +147,25 @@ td {
 .progress {
   background-color: #212121; }
 
-.btn-puzzle {
+a.btn-puzzle {
   background-color: #265a88;
   border-color: #265a88;
   font-size: 2rem;
   width: 100%; }
 
-.btn-puzzle:hover {
+a.btn-puzzle:hover {
   background-color: #337ab7; }
 
-button.btn-puzzle {
+a.btn-puzzle {
   display: flex;
   align-items: center;
   justify-content: center; }
 
-button svg {
+a.btn-puzzle svg {
   fill: white;
   width: 35px;
   height: 35px;
   margin-left: 0px; }
-
-.flex-item a:hover {
-  text-decoration: none; }
 
 svg.logo .line {
   fill: none;

@@ -109,22 +109,11 @@ var deathFrameTimeout = function(i){
 	}, i*50);
 };
 
-
-
 var lifeCheck = function(lives, hit){
 	if (lives === 0){
-		//clearInterval(moves);
-		//clearInterval(spaceCheck);
 		gameOver();
 	}
 	$("#life" + (lives - 1)).css("visibility", "hidden");
-	//var happened = (hit ? "Boom! " : "Wrong! ");
-	//var	alertText = (lives == 0) ? happened + "You Lose!" : happened + "You have " + lives + (lives > 1 ? " lives" : " life") + " left!";
-	//spacePos = "00";
-	//badGuyPos1 = "33";
-	//setTimeout(function(){
-		//placeSnacman();}, 1050);
-		//placeSpaceship(badGuyPos1, "badGuy1");}, 1050);
 };
 
 function gameOver() {

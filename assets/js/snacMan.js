@@ -1,8 +1,3 @@
-var score = 0;
-var chewable = true;
-var puzzle = getParameterByName("name");
-var gameSongs = games[puzzle]["puzzle"];
-var songs = Object.keys(gameSongs);
 drawLives(2);
 drawBoard();
 placeSnacman();

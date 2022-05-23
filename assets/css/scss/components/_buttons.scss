@@ -1,26 +1,22 @@
-.btn-puzzle {
+a.btn-puzzle {
     background-color: $blue;
     border-color: $blue;
     font-size: 2rem;
     width: 100%;
 }
-.btn-puzzle:hover {
+a.btn-puzzle:hover {
     background-color: $light-blue;;
 }
 
-button.btn-puzzle {
+a.btn-puzzle {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-button svg {
+a.btn-puzzle svg {
     fill: white;
     width: 35px;
     height: 35px;
     margin-left: 0px;
-}
-
-.flex-item a:hover {
-  text-decoration: none;
 }
