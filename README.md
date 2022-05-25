@@ -1,1 +1,3 @@
-# snac-man
+# snacman
+
+Not your grandpa's snacman
