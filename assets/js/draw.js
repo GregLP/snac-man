@@ -1,5 +1,6 @@
 var puzzle = getParameterByName("name");
 var gameSongs = games[puzzle]["puzzle"];
+let gameTitle = games[puzzle]["title"];
 var songs = Object.keys(gameSongs);
 let rows = 4;
 let cols = 5;
@@ -10,7 +11,7 @@ var score = 0;
 var chewable = true;
 let progressBarPercentage;
 
-$("#gameTitle").text(games[puzzle]["title"]);
+document.querySelector('h1').textContent = gameTitle;
 
 function getParameterByName(name) {
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");

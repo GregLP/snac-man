@@ -5,6 +5,7 @@ var seconds = 0;
 var blinking = false;
 var blink;
 var clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, --seconds)}, 1000);
+const timer = document.getElementById('timer');
 
 var setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_seconds){
 	ten_minutes = new_ten_minutes;
@@ -14,13 +15,14 @@ var setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_second
 
 	if ((!blinking && ten_minutes == 0 && minutes == 0 && ten_seconds == 0 ) || (!blinking && minutes == 0 && ten_seconds <= 1 && seconds == 0)){
 		blinking = true;
-		$('#timer').css("color", "red");
+		timer.style.color = 'red';
 			blink = setInterval(function(){
-				if ($('#timer').css("visibility") == "visible")
-					$('#timer').css("visibility", "hidden")
-				else
-					$('#timer').css("visibility", "visible");
-				}, 500);
+				if (timer.style.visibility === 'visible') {
+					timer.style.visibility = 'hidden';
+				} else {
+					timer.style.visibility = 'visible';
+				}
+			}, 500);
 	}
 
 	if (seconds == -1){
@@ -35,13 +37,12 @@ var setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_second
 		}
 		else {
 			seconds = 0;
-			$('#timer').css("visibility", "visible");
+			timer.style.visibility = 'visible';
 			gameOver();
 			clearInterval(clock);
 			clearInterval(blink);
 
 		}
 	}
-
-	$("#timer").text(ten_minutes.toString() + minutes.toString() + ":" + ten_seconds.toString() + seconds.toString());
+	timer.textContent = `${ten_minutes.toString()}${minutes.toString()}:${ten_seconds.toString()}${seconds.toString()}`;
 };
