@@ -42,14 +42,14 @@ var drawBoard = function(){
     document.write(` <main><div id="gameBoard" class="game-container"> `);
 	for (var i = 0; i < rows; i++){
 		for (var j = 0; j < cols; j++){
-            document.write(` <div id="${i.toString() + "r" + j.toString()}" class="cell"><p>${songs.pop()}</p></div>`);
+            document.write(` <div id="r${i.toString() + "c" + j.toString()}" class="cell"><p>${songs.pop()}</p></div>`);
 		}
 	}
 	document.write(`</div></main>`);
 };
 
 function placeSnacman() {
-    const snacmanStartingCell = document.getElementById("0r0");
+    const snacmanStartingCell = document.getElementById("r0c0");
     const drawSnacman = `<img id="snacman" src="assets/img/svg/snacman.svg" />`;
     snacmanStartingCell.insertAdjacentHTML("beforeend", drawSnacman);
 }

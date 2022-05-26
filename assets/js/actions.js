@@ -6,7 +6,7 @@ onkeydown = function(e){
 		if (currentColumn >= cols ) {
 			currentColumn = 0;
 		}
-		let rightMoveDivID = `#${currentRow}r${currentColumn}`;
+		let rightMoveDivID = `#r${currentRow}c${currentColumn}`;
 		$("#snacman").appendTo(rightMoveDivID);
 	}
 	else if (e.keyCode == '37') {
@@ -14,7 +14,7 @@ onkeydown = function(e){
 		if (currentColumn < 0 ) {
 			currentColumn = (cols - 1);
 		}
-		leftMoveDivID = `#${currentRow}r${currentColumn}`;
+		leftMoveDivID = `#r${currentRow}c${currentColumn}`;
 		$("#snacman").appendTo(leftMoveDivID);
 	}
 	else if (e.keyCode == '38'){
@@ -22,7 +22,7 @@ onkeydown = function(e){
 		if (currentRow < 0 ) {
 			currentRow = (rows - 1);
 		}
-		let upMoveDivID = `#${currentRow}r${currentColumn}`;
+		let upMoveDivID = `#r${currentRow}c${currentColumn}`;
 		$("#snacman").appendTo(upMoveDivID);
 	}
 	else if (e.keyCode == '40'){
@@ -30,7 +30,7 @@ onkeydown = function(e){
 		if (currentRow >= rows ) {
 			currentRow = 0;
 		}
-		let downMoveDivID = `#${currentRow}r${currentColumn}`;
+		let downMoveDivID = `#r${currentRow}c${currentColumn}`;
 		$("#snacman").appendTo(downMoveDivID);
 	}
 	else if (e.keyCode == '13' || e.keyCode == '32'){
@@ -58,27 +58,27 @@ var chew = function(){
 };
 
 var munchCheck = function(){
-	if (gameSongs[$('div#' + currentRow + "r" + currentColumn).text()] && lives) {
+	if (gameSongs[$('div#r' + currentRow + "c" + currentColumn).text()] && lives) {
 		++numCorrect;
 		score += 100;
 		progressBarValue += progressBarPercentage;
 		document.getElementById('gamePointTotal').innerHTML = score;
 		document.getElementById('progressBar').style.width = `${progressBarValue}%`;
-		let currentLocationId = `${currentRow}r${currentColumn}`;
+		let currentLocationId = `r${currentRow}c${currentColumn}`;
 		//document.querySelector(`div#${currentLocationId} p`).textContent = '';
-		setTimeout(function(){$('div#' + currentRow + "r" + currentColumn + " p").remove();}, 30);
+		setTimeout(function(){$('div#r' + currentRow + "c" + currentColumn + " p").remove();}, 30);
 		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
 		if (numCorrect == numToWin){
 			setCookie("bob", 1, 1);
 			celebrate();
 		}
 	}
-	else if ( ( $('div#' + currentRow + "r" + currentColumn + " p").text() == 'Wrong!' ) || ( $('div#' + currentRow + "r" + currentColumn + " p").text() == 'no snacs!' ) ||  ( $('div#' + currentRow + "r" + currentColumn + " p").html() === " " ) ) {
-		$('div#' + currentRow + "r" + currentColumn + " p").text("no snacs!");
+	else if ( ( $('div#r' + currentRow + "c" + currentColumn + " p").text() == 'Wrong!' ) || ( $('div#r' + currentRow + "c" + currentColumn + " p").text() == 'no snacs!' ) ||  ( $('div#r' + currentRow + "c" + currentColumn + " p").html() === " " ) ) {
+		$('div#r' + currentRow + "c" + currentColumn + " p").text("no snacs!");
 	}
 	else if (lives > 0){
-		$('div#' + currentRow + "r" + currentColumn + " p").text("Wrong!");
-		$('div#' + currentRow + "r" + currentColumn + " p").css("color", "red");
+		$('div#r' + currentRow + "c" + currentColumn + " p").text("Wrong!");
+		$('div#r' + currentRow + "c" + currentColumn + " p").css("color", "red");
 		lifeCheck(--lives);
 		die();
 	}
