@@ -42,9 +42,16 @@ onkeydown = function(e){
 }
 
 var chew = function(){
+	var snacmanId = document.getElementById('snacman');
+	var snacTop = snacman.style.top;
+	console.log(snacTop);
 	var top = parseInt($('#snacman').css('top'));
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat2.png';
-		$('#snacman').css('top', (top - 45) + "px");});
+	setTimeout(
+		function() {
+			document.getElementById('snacman').src = 'assets/img/eat/eat2.png';
+			$('#snacman').css('top', (top - 45) + "px");
+		});
+
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat3.png'}, 20);
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat4.png'}, 40);
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat5.png'}, 60);
@@ -58,27 +65,28 @@ var chew = function(){
 };
 
 var munchCheck = function(){
+	let currentLocation = `r${currentRow}c${currentColumn}`;
+	let currentLocationId = document.getElementById(currentLocation);
+	let currentLocationP = document.querySelector(`#${currentLocation} p`);
+
 	if (gameSongs[$('div#r' + currentRow + "c" + currentColumn).text()] && lives) {
 		++numCorrect;
 		score += 100;
 		progressBarValue += progressBarPercentage;
 		document.getElementById('gamePointTotal').innerHTML = score;
 		document.getElementById('progressBar').style.width = `${progressBarValue}%`;
-		let currentLocationId = `r${currentRow}c${currentColumn}`;
-		//document.querySelector(`div#${currentLocationId} p`).textContent = '';
-		setTimeout(function(){$('div#r' + currentRow + "c" + currentColumn + " p").remove();}, 30);
-		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
+		currentLocationP.textContent = '';
 		if (numCorrect == numToWin){
 			setCookie("bob", 1, 1);
 			celebrate();
 		}
 	}
-	else if ( ( $('div#r' + currentRow + "c" + currentColumn + " p").text() == 'Wrong!' ) || ( $('div#r' + currentRow + "c" + currentColumn + " p").text() == 'no snacs!' ) ||  ( $('div#r' + currentRow + "c" + currentColumn + " p").html() === " " ) ) {
-		$('div#r' + currentRow + "c" + currentColumn + " p").text("no snacs!");
+	else if ( currentLocationP.textContent === ''  ) {
+		currentLocationP.textContent = '';
 	}
 	else if (lives > 0){
-		$('div#r' + currentRow + "c" + currentColumn + " p").text("Wrong!");
-		$('div#r' + currentRow + "c" + currentColumn + " p").css("color", "red");
+		currentLocationId.style.backgroundColor = 'rgba(196, 30, 58,1)';
+		currentLocationP.textContent = '';
 		lifeCheck(--lives);
 		die();
 	}
@@ -110,23 +118,27 @@ var deathFrameTimeout = function(i){
 	}, i*50);
 };
 
-var lifeCheck = function(lives, hit){
+var lifeCheck = function(lives){
 	if (lives === 0){
 		gameOver();
+	} else {
+		let extraLifeId = `life${lives -1}`;
+		document.getElementById(extraLifeId).style.visibility = "hidden";
 	}
-	$("#life" + (lives - 1)).css("visibility", "hidden");
 };
 
 function gameOver() {
-	$('#game_over').css("visibility", "visible");
-	let loser_text = "Game Over<br /><br />A fatal exception has occurred:<br /><br />You Lose!<br /><br />Score:0";
-	$('#game_over').html(loser_text);
+	document.getElementById("gameOver").style.visibility = "visible";
+	score = 0;
+	let loser_text = `<h2>Game Over</h2><p>A fatal exception has occurred</p><p>You lose</p><p>Score: ${score}</p>`;
+	document.getElementById('gameOver').innerHTML = loser_text;
+	clearInterval(clock);
+	clearInterval(blink);
 }
 
 var celebrate = function(){
 	setTimeout(function(){
-		//evalSound('win');
-		$('#game_over').css("visibility", "visible");
+		document.getElementById("gameOver").style.visibility = "visible";
 		score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*lives;
 		var stars = 0
 		if (score > 6000)
@@ -135,13 +147,10 @@ var celebrate = function(){
 			stars = 2;
 		else if (score > 2000)
 			stars = 1;
-		var winner_text = "<span>Game Over</span><br /><span>You Win!</span><br /><br /><span>Time: " + $('#timer').text() + "</span><br /><span>Score: " + score +
-			"</span><br />";
-
+		let winner_text = `<h2>Game Over</h2><p>You Win!</p><p>Score: ${score}</p>`;
 		for (var i = 0; i < stars; i++)
 			winner_text += "<span id=\"stars\"> &#9733 </span>"
-
-		$('#game_over').html(winner_text);
+		document.getElementById('gameOver').innerHTML = winner_text;
 		clearInterval(clock);
 		clearInterval(blink);
 }, 200);

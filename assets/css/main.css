@@ -56,7 +56,7 @@ body {
   left: 675px;
   visibility: hidden; }
 
-#game_over {
+#gameOver {
   background-color: #265a88;
   color: white;
   height: 55%;
