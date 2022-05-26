@@ -61,10 +61,11 @@ var munchCheck = function(){
 	if (gameSongs[$('div#' + currentRow + "r" + currentColumn).text()] && lives) {
 		++numCorrect;
 		score += 100;
-		$('#gamePointTotal').text(score);
 		progressBarValue += progressBarPercentage;
-		$('#progressBar').css("width", progressBarValue + '%');
-		$('div#' + currentRow + "r" + currentColumn).css("color", "#5dfc0a");
+		document.getElementById('gamePointTotal').innerHTML = score;
+		document.getElementById('progressBar').style.width = `${progressBarValue}%`;
+		let currentLocationId = `${currentRow}r${currentColumn}`;
+		//document.querySelector(`div#${currentLocationId} p`).textContent = '';
 		setTimeout(function(){$('div#' + currentRow + "r" + currentColumn + " p").remove();}, 30);
 		var numText = (numToWin == numCorrect) ? "You Win!" : (numToWin - numCorrect + " To Win");
 		if (numCorrect == numToWin){
