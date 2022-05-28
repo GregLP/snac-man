@@ -47,7 +47,6 @@ const drawBoard = function(){
 		}
 	}
 	document.getElementById('gameBoard').innerHTML = gameboard;
-	document.write(`</div></main>`);
 };
 
 function placeSnacman() {
