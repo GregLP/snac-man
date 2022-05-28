@@ -1,47 +1,48 @@
-var puzzle = getParameterByName("name");
-var gameSongs = games[puzzle]["puzzle"];
-let gameTitle = games[puzzle]["title"];
-var songs = Object.keys(gameSongs);
-let rows = 4;
-let cols = 5;
-var lives = 3;
-var numCorrect = 0;
+const puzzle = getParameterByName("name");
+const gameSongs = games[puzzle]["puzzle"];
+const gameTitle = games[puzzle]["title"];
+const songs = Object.keys(gameSongs);
+const rows = 4;
+const cols = 5;
+let lives = 3;
+let numCorrect = 0;
 let progressBarValue = 0;
-var score = 0;
-var chewable = true;
+let score = 0;
+let chewable = true;
 let progressBarPercentage;
+let numToWin;
 
 document.querySelector('h1').textContent = gameTitle;
 
 function getParameterByName(name) {
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-    let results = regex.exec(location.search);
+    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    const results = regex.exec(location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-var findNumToWin = function(obj){
-	var numToWin = 0;
-	for (var key in obj){
+const findNumToWin = function(obj){
+	numToWin = 0;
+	for (let key in obj){
 		numToWin += (obj.hasOwnProperty(key) && obj[key]) ? 1 : 0;
 	}
 	return numToWin;
 };
 
-let numToWin = findNumToWin(gameSongs);
+numToWin = findNumToWin(gameSongs);
 progressBarPercentage = 100 / findNumToWin(gameSongs);
 
-var drawLives = function(lives){
-	for (var i = 0; i < lives; i++){
+const drawLives = function(lives){
+	for (let i = 0; i < lives; i++){
         const lives_container = document.getElementById("gameLivesRemaining");
         const lives_remaining_html = `<img class="life-remaining" id="life${i}" width="50" height="50" src="assets/img/svg/snacman.svg" alt="snacman extra life">`;
         lives_container.insertAdjacentHTML("beforeend", lives_remaining_html);
 	}
 };
 
-var drawBoard = function(){
+const drawBoard = function(){
     document.write(` <main><div id="gameBoard" class="game-container"> `);
-	for (var i = 0; i < rows; i++){
-		for (var j = 0; j < cols; j++){
+	for (let i = 0; i < rows; i++){
+		for (let j = 0; j < cols; j++){
             document.write(` <div id="r${i.toString() + "c" + j.toString()}" class="cell"><p>${songs.pop()}</p></div>`);
 		}
 	}

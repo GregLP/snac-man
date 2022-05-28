@@ -15,7 +15,7 @@ onkeydown = function(e){
 		if (currentColumn < 0 ) {
 			currentColumn = (cols - 1);
 		}
-		leftMoveDivID = `#r${currentRow}c${currentColumn}`;
+		let leftMoveDivID = `#r${currentRow}c${currentColumn}`;
 		$("#snacman").appendTo(leftMoveDivID);
 	}
 	else if (e.keyCode == '38'){
@@ -56,7 +56,7 @@ const eat = function() {
 	}, 100)
 }
 
-var munchCheck = function(){
+const munchCheck = function(){
 	let currentLocation = `r${currentRow}c${currentColumn}`;
 	let currentLocationId = document.getElementById(currentLocation);
 	let currentLocationP = document.querySelector(`#${currentLocation} p`);
@@ -94,7 +94,7 @@ var munchCheck = function(){
 	}
 }
 
-var lifeCheck = function(lives){
+const lifeCheck = function(lives){
 	if (lives === 0){
 		gameOver();
 	} else {
@@ -112,11 +112,11 @@ function gameOver() {
 	clearInterval(blink);
 }
 
-var celebrate = function(){
+const celebrate = function(){
 	setTimeout(function(){
 		document.getElementById("gameOver").style.visibility = "visible";
 		score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*lives;
-		var stars = 0
+		let stars = 0
 		if (score > 6000)
 			stars = 3;
 		else if (score > 4000)
@@ -124,7 +124,7 @@ var celebrate = function(){
 		else if (score > 2000)
 			stars = 1;
 		let winner_text = `<h2>Game Over</h2><p>You Win!</p><p>Score: ${score}</p>`;
-		for (var i = 0; i < stars; i++)
+		for (let i=0; i<stars; i++)
 			winner_text += "<span id=\"stars\"> &#9733 </span>"
 		document.getElementById('gameOver').innerHTML = winner_text;
 		clearInterval(clock);
