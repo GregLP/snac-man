@@ -36,8 +36,9 @@ onkeydown = function(e){
 	}
 	else if (e.keyCode == '13' || e.keyCode == '32'){
 			if (chewable){
-			chew();
+			//chew();
 			munchCheck();
+			eat();
 		}
 	}
 }
@@ -64,6 +65,24 @@ var chew = function(){
 	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/svg/snacman.svg';
 		$('#snacman').css('top', "auto");}, 180);
 };
+
+
+
+var eat = function() {
+	const leftLeg = document.querySelector('.left-leg');
+	const rightLeg = document.querySelector('.right-leg');
+	const hamburgerBottom = document.querySelector('.hamburger-bottom');
+
+	leftLeg.setAttribute('y1', '21.5');
+	rightLeg.setAttribute('y1', '21.5');
+	hamburgerBottom.setAttribute('d', 'M1.5,12.5c2.3,5.2,7.6,8.9,13.7,8.9s11.4-3.7,13.7-8.9H1.5z');
+
+	setTimeout(function(){
+		leftLeg.setAttribute('y1', '31.3');
+		rightLeg.setAttribute('y1', '31.3');
+		hamburgerBottom.setAttribute('d', 'M1.5,22.5c2.3,5.2,7.6,8.9,13.7,8.9s11.4-3.7,13.7-8.9H1.5z');
+	}, 100)
+}
 
 var munchCheck = function(){
 	let currentLocation = `r${currentRow}c${currentColumn}`;
