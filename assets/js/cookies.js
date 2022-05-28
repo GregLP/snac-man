@@ -1,7 +1,7 @@
-function setCookie(c_name,value,exdays){
+function setCookie(cname,cvalue,exdays){
     document.cookie = "";
-    var exdate=new Date();
+    const exdate=new Date();
     exdate.setDate(exdate.getDate() + exdays);
-    var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-    document.cookie=c_name + "=" + c_value + ";domain=.snacman.com;path=/";
+    let c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+    document.cookie=cname + "=" + c_value + ";domain=.snacman.com;path=/";
   }

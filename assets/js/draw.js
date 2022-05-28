@@ -40,12 +40,13 @@ const drawLives = function(lives){
 };
 
 const drawBoard = function(){
-    document.write(` <main><div id="gameBoard" class="game-container"> `);
+	let gameboard = '';
 	for (let i = 0; i < rows; i++){
 		for (let j = 0; j < cols; j++){
-            document.write(` <div id="r${i.toString() + "c" + j.toString()}" class="cell"><p>${songs.pop()}</p></div>`);
+            gameboard += ` <div id="r${i.toString() + "c" + j.toString()}" class="cell"><p>${songs.pop()}</p></div>`;
 		}
 	}
+	document.getElementById('gameBoard').innerHTML = gameboard;
 	document.write(`</div></main>`);
 };
 
