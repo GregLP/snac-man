@@ -36,47 +36,19 @@ onkeydown = function(e){
 	}
 	else if (e.keyCode == '13' || e.keyCode == '32'){
 			if (chewable){
-			//chew();
 			munchCheck();
 			eat();
 		}
 	}
 }
 
-var chew = function(){
-	var snacmanId = document.getElementById('snacman');
-	var snacTop = snacman.style.top;
-	console.log(snacTop);
-	var top = parseInt($('#snacman').css('top'));
-	setTimeout(
-		function() {
-			document.getElementById('snacman').src = 'assets/img/eat/eat2.png';
-			$('#snacman').css('top', (top - 45) + "px");
-		});
-
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat3.png'}, 20);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat4.png'}, 40);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat5.png'}, 60);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat6.png'}, 80);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat5.png'}, 100);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat4.png'}, 120);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat3.png'}, 140);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/eat/eat2.png'}, 160);
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/svg/snacman.svg';
-		$('#snacman').css('top', "auto");}, 180);
-};
-
-
-
-var eat = function() {
+const eat = function() {
 	const leftLeg = document.querySelector('.left-leg');
 	const rightLeg = document.querySelector('.right-leg');
 	const hamburgerBottom = document.querySelector('.hamburger-bottom');
-
 	leftLeg.setAttribute('y1', '21.5');
 	rightLeg.setAttribute('y1', '21.5');
 	hamburgerBottom.setAttribute('d', 'M1.5,12.5c2.3,5.2,7.6,8.9,13.7,8.9s11.4-3.7,13.7-8.9H1.5z');
-
 	setTimeout(function(){
 		leftLeg.setAttribute('y1', '31.3');
 		rightLeg.setAttribute('y1', '31.3');
