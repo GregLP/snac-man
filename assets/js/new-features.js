@@ -242,9 +242,9 @@ var spaceCheck = setInterval(function(){
 	}
 }, 250);
 
-//document.write(`<div id="celebrate"><h2>You Win!</h2></div>`);
+document.write(`<div id="celebrate"><h2>You Win!</h2></div>`);
 
-/*
+
 var drawBoard = function(){
     document.write(` <main><div id="gameBoard" class="game-container"> `);
 	for (var i = 0; i < rows; i++){
@@ -255,4 +255,40 @@ var drawBoard = function(){
 	document.write(`</div></main>`);
 	document.write(`<img id="badGuy1" src="assets/img/tvbadguy.png" />`);
 };
-*/
+
+
+
+
+Object.keys = Object.keys || (function () {
+	const hasOwnProperty = Object.prototype.hasOwnProperty,
+		hasDontEnumBug = !{toString:null}.propertyIsEnumerable("toString"),
+		DontEnums = [
+			'toString',
+			'toLocaleString',
+			'valueOf',
+			'hasOwnProperty',
+			'isPrototypeOf',
+			'propertyIsEnumerable',
+			'constructor'
+		],
+		DontEnumsLength = DontEnums.length;
+
+	return function (o) {
+		if (typeof o != "object" && typeof o != "function" || o === null)
+			throw new TypeError("Object.keys called on a non-object");
+
+		let result = [];
+		for (let name in o) {
+			if (hasOwnProperty.call(o, name))
+				result.push(name);
+		}
+
+		if (hasDontEnumBug) {
+			for (let i = 0; i < DontEnumsLength; i++) {
+				if (hasOwnProperty.call(o, DontEnums[i]))
+					result.push(DontEnums[i]);
+			}
+		}
+		return result;
+	};
+})();
