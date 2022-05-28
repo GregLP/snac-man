@@ -1,4 +1,4 @@
-var games = {
+const games = {
 
 	"bob" : {"title": "Bob Dylan Songs", "puzzle":{"Song for Woody": 1, "It's All Over Now Davie Blue": 0, "Just Like a Woman": 1, "Not Dark Yet": 1, 
 	"The Tornado": 0, "Positively 4th Street": 1, "Live and Let Die": 0, "Neal Young Heart of Gold": 0, "Live Minus Zero/No Limit": 1,

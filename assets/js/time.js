@@ -1,19 +1,19 @@
-var ten_minutes = 0;
-var minutes = 1;
-var ten_seconds = 0;
-var seconds = 0;
-var blinking = false;
-var blink;
-var clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, --seconds)}, 1000);
+let ten_minutes = 0;
+let minutes = 1;
+let ten_seconds = 0;
+let seconds = 0;
+let blinking = false;
+let blink;
+const clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, --seconds)}, 1000);
 const timer = document.getElementById('timer');
 
-var setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_seconds){
+const setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_seconds){
 	ten_minutes = new_ten_minutes;
 	minutes = new_minutes;
 	ten_seconds = new_ten_seconds;
 	seconds = new_seconds;
 
-	if ((!blinking && ten_minutes == 0 && minutes == 0 && ten_seconds == 0 ) || (!blinking && minutes == 0 && ten_seconds <= 1 && seconds == 0)){
+	if ((!blinking && ten_minutes === 0 && minutes === 0 && ten_seconds === 0 ) || (!blinking && minutes === 0 && ten_seconds <= 1 && seconds === 0)){
 		blinking = true;
 		timer.style.color = 'red';
 			blink = setInterval(function(){
@@ -25,7 +25,7 @@ var setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_second
 			}, 500);
 	}
 
-	if (seconds == -1){
+	if (seconds === -1){
 		if (ten_seconds){
 			ten_seconds--;
 			seconds = 9;

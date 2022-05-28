@@ -1,6 +1,6 @@
 .game {
     body{
-    font-style: bold;
+    font-weight: bold;
     color: $black;
     word-wrap: break-word;
     font-family: Arial, Helvetica, sans-serif;
@@ -67,7 +67,6 @@
   width: 100vw;
 }
 
-
 #gameLivesRemaining {
   flex: 1 0 10%;
 }
@@ -91,7 +90,6 @@
   font-weight: 700;
 }
 
-
 #gameBoard {
   display: flex;
   flex-wrap: wrap;
@@ -106,8 +104,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-color: $black;
-    border-style: solid;
 }
 
 .play-view {
