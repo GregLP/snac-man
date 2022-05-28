@@ -1,5 +1,6 @@
 let currentRow = 0;
 let currentColumn = 0;
+
 onkeydown = function(e){
 	if (e.keyCode == '39'){
 		currentColumn++;
@@ -68,6 +69,7 @@ var munchCheck = function(){
 	let currentLocation = `r${currentRow}c${currentColumn}`;
 	let currentLocationId = document.getElementById(currentLocation);
 	let currentLocationP = document.querySelector(`#${currentLocation} p`);
+	let snacMan = document.getElementById('snacman');
 
 	if (gameSongs[$('div#r' + currentRow + "c" + currentColumn).text()] && lives) {
 		++numCorrect;
@@ -76,7 +78,7 @@ var munchCheck = function(){
 		document.getElementById('gamePointTotal').innerHTML = score;
 		document.getElementById('progressBar').style.width = `${progressBarValue}%`;
 		currentLocationP.textContent = '';
-		if (numCorrect == numToWin){
+		if (numCorrect === numToWin){
 			setCookie("bob", 1, 1);
 			celebrate();
 		}
@@ -85,38 +87,21 @@ var munchCheck = function(){
 		currentLocationP.textContent = '';
 	}
 	else if (lives > 0){
+		snacMan.classList.add("die-animation");
 		currentLocationId.style.backgroundColor = 'rgba(196, 30, 58,1)';
 		currentLocationP.textContent = '';
 		lifeCheck(--lives);
-		die();
+		chewable = false;
+		setTimeout(function(){
+			chewable = true;
+			snacMan.classList.remove("die-animation");
+		}, 1000);
 	}
 	else{
 		clearInterval(clock);
 		gameOver();
 	}
 }
-
-var die = function(){
-	chewable = false;
-	setTimeout(function(){
-		chewable = true;
-	}, 1000);
-
-	for (var i = 0; i < 20; i++){
-		deathFrameTimeout(i);
-	}
-
-	setTimeout(function(){ document.getElementById('snacman').src = 'assets/img/svg/snacman.svg';
-		$('#snacman').css('top', "auto");
-	}, 1000);
-};
-
-var deathFrameTimeout = function(i){
-	setTimeout(function(){
-		document.getElementById('snacman').src = 'assets/img/die/die' + (i + 1) + '.png';
-		$('#snacman').css('top', "auto");
-	}, i*50);
-};
 
 var lifeCheck = function(lives){
 	if (lives === 0){
