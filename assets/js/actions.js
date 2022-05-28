@@ -1,46 +1,74 @@
+drawLives(2);
+drawBoard();
+placeSnacman();
+
 let currentRow = 0;
 let currentColumn = 0;
+let currentLocation = `r${currentRow}c${currentColumn}`;
+let currentLocationId = document.getElementById(currentLocation);
+let snacman = document.getElementById('snacman');
 
-onkeydown = function(e){
-	if (e.keyCode == '39'){
-		currentColumn++;
-		if (currentColumn >= cols ) {
-			currentColumn = 0;
-		}
-		let rightMoveDivID = `#r${currentRow}c${currentColumn}`;
-		$("#snacman").appendTo(rightMoveDivID);
-	}
-	else if (e.keyCode == '37') {
-		currentColumn--;
-		if (currentColumn < 0 ) {
-			currentColumn = (cols - 1);
-		}
-		let leftMoveDivID = `#r${currentRow}c${currentColumn}`;
-		$("#snacman").appendTo(leftMoveDivID);
-	}
-	else if (e.keyCode == '38'){
-		currentRow--
-		if (currentRow < 0 ) {
-			currentRow = (rows - 1);
-		}
-		let upMoveDivID = `#r${currentRow}c${currentColumn}`;
-		$("#snacman").appendTo(upMoveDivID);
-	}
-	else if (e.keyCode == '40'){
-		currentRow++;
-		if (currentRow >= rows ) {
-			currentRow = 0;
-		}
-		let downMoveDivID = `#r${currentRow}c${currentColumn}`;
-		$("#snacman").appendTo(downMoveDivID);
-	}
-	else if (e.keyCode == '13' || e.keyCode == '32'){
-			if (chewable){
-			munchCheck();
-			eat();
-		}
-	}
+function moveSnacman() {
+	currentLocation = `r${currentRow}c${currentColumn}`;
+	currentLocationId = document.getElementById(currentLocation);
+	currentLocationId.appendChild(snacman);
 }
+
+
+window.addEventListener("keydown", function (event) {
+	if (event.defaultPrevented) {
+		return;
+	}
+	switch (event.key) {
+		case "Down":
+		case "ArrowDown":
+		case "s":
+			currentRow++;
+			if (currentRow >= rows ) {
+				currentRow = 0;
+			}
+			moveSnacman();
+			break;
+		case "Up":
+		case "ArrowUp":
+		case "w":
+			currentRow--
+			if (currentRow < 0 ) {
+				currentRow = (rows - 1);
+			}
+			moveSnacman();
+			break;
+		case "Left":
+		case "ArrowLeft":
+		case "a":
+			currentColumn--;
+			if (currentColumn < 0 ) {
+				currentColumn = (cols - 1);
+			}
+			moveSnacman();
+			break;
+		case "Right":
+		case "ArrowRight":
+		case "d":
+			currentColumn++;
+			if (currentColumn >= cols ) {
+				currentColumn = 0;
+			}
+			moveSnacman()
+			break;
+		case "Enter":
+		case " ":
+			if (chewable){
+				munchCheck();
+				eat();
+			}
+			break;
+		default:
+			return;
+	}
+	event.preventDefault();
+}, true);
+
 
 const eat = function() {
 	const leftLeg = document.querySelector('.left-leg');
@@ -57,12 +85,8 @@ const eat = function() {
 }
 
 const munchCheck = function(){
-	let currentLocation = `r${currentRow}c${currentColumn}`;
-	let currentLocationId = document.getElementById(currentLocation);
 	let currentLocationP = document.querySelector(`#${currentLocation} p`);
-	let snacMan = document.getElementById('snacman');
-
-	if (gameSongs[$('div#r' + currentRow + "c" + currentColumn).text()] && lives) {
+	if (gameSongs[currentLocationP.textContent] && lives) {
 		++numCorrect;
 		score += 100;
 		progressBarValue += progressBarPercentage;
@@ -70,7 +94,6 @@ const munchCheck = function(){
 		document.getElementById('progressBar').style.width = `${progressBarValue}%`;
 		currentLocationP.textContent = '';
 		if (numCorrect === numToWin){
-			setCookie("bob", 1, 1);
 			celebrate();
 		}
 	}
@@ -78,14 +101,14 @@ const munchCheck = function(){
 		currentLocationP.textContent = '';
 	}
 	else if (lives > 0){
-		snacMan.classList.add("die-animation");
+		snacman.classList.add("die-animation");
 		currentLocationId.style.backgroundColor = 'rgba(196, 30, 58,1)';
 		currentLocationP.textContent = '';
 		lifeCheck(--lives);
 		chewable = false;
 		setTimeout(function(){
 			chewable = true;
-			snacMan.classList.remove("die-animation");
+			snacman.classList.remove("die-animation");
 		}, 1000);
 	}
 	else{

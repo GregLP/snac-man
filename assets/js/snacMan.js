@@ -1,7 +1,3 @@
-drawLives(2);
-drawBoard();
-placeSnacman();
-
 Object.keys = Object.keys || (function () {
     const hasOwnProperty = Object.prototype.hasOwnProperty,
         hasDontEnumBug = !{toString:null}.propertyIsEnumerable("toString"),
