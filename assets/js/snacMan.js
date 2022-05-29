@@ -237,7 +237,7 @@ const lifeCheck = function(lives){
 function gameOver() {
     document.getElementById("gameOver").style.visibility = "visible";
     score = 0;
-    let loser_text = `<h2>Game Over</h2><p>A fatal exception has occurred</p><p>You lose</p><p>Score: ${score}</p>`;
+    let loser_text = `<h2>Game Over</h2><p>A fatal exception has occurred</p><p>You lose</p><p>Score: ${score}</p><div>Next Puzzle: <a class="btn btn-default" href="${randomPuzzle()}"></a></div>`;
     document.getElementById('gameOver').innerHTML = loser_text;
     clearInterval(clock);
     clearInterval(blink);
@@ -262,3 +262,11 @@ const celebrate = function(){
         clearInterval(blink);
     }, 200);
 };
+
+
+function randomPuzzle() {
+    const totalPuzzles = Object.keys(games);
+    const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
+    const newPuzzleName = totalPuzzles[newPuzzleArrayNumber];
+    return `?name=${newPuzzleName}`;
+}

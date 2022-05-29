@@ -25,7 +25,6 @@ const games = {
 			"Kodachrome": 0
 		}
 	},
-
 	"dogs": {
 		"title": "Dog Breeds",
 		"puzzle":{
