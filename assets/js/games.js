@@ -1,17 +1,55 @@
 const games = {
 
-	"bob" : {"title": "Bob Dylan Songs", "puzzle":{"Song for Woody": 1, "It's All Over Now Davie Blue": 0, "Just Like a Woman": 1, "Not Dark Yet": 1, 
-	"The Tornado": 0, "Positively 4th Street": 1, "Live and Let Die": 0, "Neal Young Heart of Gold": 0, "Live Minus Zero/No Limit": 1,
-	"Roll on John": 1, "Shelter from the Storm": 1, "If You See Her Say Goodbye": 1, "Joker Dog": 0, "The Dog in Me": 0,
-	 "Boots of Spanish Leather": 1, "Who Killed Davie Koven": 0, "Just Like a Robot": 0, "The Spanish Harlem Incident": 1,
-	"Mr. Tambourine Dog": 0, "Kodachrome": 0}
+	"bob" : {
+		"title": "Bob Dylan Songs",
+		"puzzle":{
+			"Song for Woody": 1,
+			"It's All Over Now Davie Blue": 0,
+			"Just Like a Woman": 1,
+			"Not Dark Yet": 1,
+			"The Tornado": 0,
+			"Positively 4th Street": 1,
+			"Live and Let Die": 0,
+			"Neal Young Heart of Gold": 0,
+			"Live Minus Zero/No Limit": 1,
+			"Roll on John": 1,
+			"Shelter from the Storm": 1,
+			"If You See Her Say Goodbye": 1,
+			"Joker Dog": 0,
+			"The Dog in Me": 0,
+			"Boots of Spanish Leather": 1,
+			"Who Killed Davie Koven": 0,
+			"Just Like a Robot": 0,
+			"The Spanish Harlem Incident": 1,
+			"Mr. Tambourine Dog": 0,
+			"Kodachrome": 0
+		}
 	},
-	
-	"dogs": {"title": "Dog Breeds","puzzle":{"Cockapoo": 1, "Cockatiel": 0, "Mini Lop": 0, "Shih Tzu": 1, 
-	"Ragdoll": 0, "LaPerm": 0, "Pomeranian": 1, "Burmilla": 0, "Bombay": 0,
-	"Ontario": 0, "Newfoundland": 1, "Bengal": 0, "Vizsla": 1, "Whippet": 1,
-	"Bullmastiff": 1, "Papillon": 1, "European Shorthair": 0, "Dalmatian": 1,
-	"English Springer Spaniel": 1, "Siamese": 0}
+
+	"dogs": {
+		"title": "Dog Breeds",
+		"puzzle":{
+			"Cockapoo": 1,
+			"Cockatiel": 0,
+			"Mini Lop": 0,
+			"Shih Tzu": 1,
+			"Ragdoll": 0,
+			"LaPerm": 0,
+			"Pomeranian": 1,
+			"Burmilla": 0,
+			"Bombay": 0,
+			"Ontario": 0,
+			"Newfoundland": 1,
+			"Bengal": 0,
+			"Vizsla": 1,
+			"Whippet": 1,
+			"Bullmastiff": 1,
+			"Papillon": 1,
+			"European Shorthair": 0,
+			"Dalmatian": 1,
+			"English Springer Spaniel": 1,
+			"Siamese": 0
+		}
 	},
 			
 	"90s" : {"title": "90's Rock Songs", "puzzle": {"Hold Me Now": 0, "Mmm Mmm Mmm Mmm": 1, "Crazy in Love": 0, "No Rain": 1, 
@@ -340,26 +378,5 @@ const games = {
     "Tottenham Hotspur": 1, "Manchester United": 1, "Manchester City": 0, "Arsenal": 1, "Middlesbrough": 0,
     "Liverpool": 1, "Leeds United": 0, "Newcastle United": 1, "West Ham United": 0,
     "Blackburn Rovers": 0, "Aston Villa": 1}
-    },
-    
-    "" : {"title": "", "puzzle": {"": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0}
-    },
-    
-    "" : {"title": "", "puzzle": {"": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0}
-    },
-    
-    "" : {"title": "", "puzzle": {"": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0, "": 0, "": 0,
-    "": 0, "": 0}
     }
 };	
