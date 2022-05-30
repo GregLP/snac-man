@@ -1,22 +1,19 @@
 a.btn-puzzle {
-    background-color: $blue;
-    border-color: $blue;
-    font-size: 2rem;
-    width: 100%;
-}
-a.btn-puzzle:hover {
-    background-color: $light-blue;;
-}
-
-a.btn-puzzle {
+  background-color: $blue;
+  border-color: $blue;
+  font-size: 2rem;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+a.btn-puzzle:hover {
+  background-color: $light-blue;;
+}
 
 a.btn-puzzle svg {
-    fill: white;
-    width: 35px;
-    height: 35px;
-    margin-left: 0;
+  fill: white;
+  width: 35px;
+  height: 35px;
+  margin-left: 0;
 }

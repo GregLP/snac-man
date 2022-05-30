@@ -30,5 +30,13 @@
     "gulp-terser": "^2.1.0",
     "postcss": "^8.4.14",
     "sass": "^1.52.1"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "Firefox ESR",
+    "last 6 iOS versions",
+    "iOS 8",
+    "IE 9"
+  ]
 }

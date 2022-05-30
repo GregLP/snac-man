@@ -27,12 +27,6 @@
     }
 }
 
-#celebrate{
- 	position:fixed;
- 	left:675px;
- 	visibility: hidden;
-}
-
 #gameOver {
   background-color: $blue;
   color:$white;
@@ -46,10 +40,6 @@
   text-align: center;
   font-size: 2.8em;
   visibility: hidden;
-}
-.prize {
-  visibility: hidden;
-  z-index: 10000;
 }
 
 #bagGuy1{
@@ -67,20 +57,12 @@
   width: 100vw;
 }
 
-#gameLivesRemaining {
+#gameLivesRemaining, #gameTimer, #gamePointTotal, #backButton {
   flex: 1 0 10%;
 }
-#gameTimer {
-  flex: 1 0 10%;
-}
+
 #gameTitle {
   flex: 4 60%;
-}
-#gamePointTotal {
-  flex: 1 0 10%;
-}
-#backButton {
-  flex: 1 0 10%;
 }
 #gameTitle {
   font-size: 2.75rem;

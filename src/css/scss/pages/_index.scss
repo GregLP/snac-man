@@ -1,7 +1,6 @@
 .puzzle-container {
     row-gap: 10px;
 }
-
 @media (min-width: 768px) {
     .flex-item.puzzle {
         flex: 1 0 calc(50% - 20px);

@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const { src, dest, watch, series, parallel } = require('gulp');
-//const imagemin = require('gulp-imagemin');
 //const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const rename = require('gulp-rename');
@@ -10,7 +9,6 @@ const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-
 
 const paths = {
     html: {
@@ -24,6 +22,10 @@ const paths = {
     styles: {
         src: ['./src/css/scss/**/*.scss'],
         dest: './dist/css/',
+    },
+    stylesSrc: {
+        src: ['./src/css/scss/**/*.scss'],
+        dest: './src/css/',
     },
     scripts: {
         src: ['./src/js/**/*.js'],
@@ -39,13 +41,16 @@ function copyHtml() {
     return src(paths.html.src).pipe(dest(paths.html.dest));
 }
 
-/*function optimizeImages() {
-    return src(paths.images.src)
-        .pipe(imagemin().on('error', (error) => console.log(error)))
-        .pipe(dest(paths.images.dest));
-}*/
-
 function compileStyles() {
+    return src(paths.stylesSrc.src)
+        .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(postcss([autoprefixer()]))
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest(paths.stylesSrc.dest));
+}
+
+function compileStylesMin() {
     return src(paths.styles.src)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
@@ -73,20 +78,20 @@ function cacheBust() {
 
 function watcher() {
     watch(paths.html.src, series(copyHtml, cacheBust));
-    //watch(paths.images.src, optimizeImages);
-    watch(paths.styles.src, parallel(compileStyles, cacheBust));
+    watch(paths.styles.src, parallel(compileStylesMin, cacheBust));
+    watch(paths.stylesSrc.src, parallel(compileStyles, cacheBust));
     watch(paths.scripts.src, parallel(minifyScripts, cacheBust));
 }
 
 exports.copyHtml = copyHtml;
-//exports.optimizeImages = optimizeImages;
 exports.compileStyles = compileStyles;
+exports.compileStylesMin = compileStylesMin;
 exports.minifyScripts = minifyScripts;
 exports.cacheBust = cacheBust;
 exports.watcher = watcher;
 
 exports.default = series(
-    parallel(copyHtml, compileStyles, minifyScripts),
+    parallel(copyHtml, compileStyles, compileStylesMin, minifyScripts),
     cacheBust,
     watcher
 );
