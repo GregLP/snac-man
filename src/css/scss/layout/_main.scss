@@ -1,5 +1,5 @@
 body {
-    background-image:url('../img/background.png');
+    background-image:url('../img/backgrounds/background.png');
 }
 #pageContainer {
   background-color: $yellow;
@@ -11,9 +11,9 @@ body {
 }
 
 @media (min-width: 768px) {
-    #pageContainer {
-        margin: 25px 50px;
-        padding: 30px 50px;
-        min-height: calc(100vh - 60px);
-    }
+  #pageContainer {
+    margin: 25px 50px;
+    padding: 30px 50px;
+    min-height: calc(100vh - 60px);
+  }
 }
