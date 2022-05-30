@@ -38,5 +38,8 @@
     "last 6 iOS versions",
     "iOS 8",
     "IE 9"
-  ]
+  ],
+  "dependencies": {
+    "gulp-svgmin": "^4.1.0"
+  }
 }

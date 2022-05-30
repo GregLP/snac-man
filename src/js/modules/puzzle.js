@@ -8,6 +8,6 @@ function randomPuzzle() {
 function createPuzzleUrl() {
     const newPuzzleSelected = randomPuzzle();
     const puzzleButton = document.getElementById('playButton');
-    puzzleButton.setAttribute('href', `play.html?${newPuzzleSelected}`);
+    puzzleButton.setAttribute('href', `play.html${newPuzzleSelected}`);
 }
 createPuzzleUrl()

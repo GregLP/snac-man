@@ -1,14 +1,27 @@
-const gulp = require('gulp');
+/**
+ * Gulp Packages
+ */
+
+// General
 const { src, dest, watch, series, parallel } = require('gulp');
-//const concat = require('gulp-concat');
-const sourcemaps = require('gulp-sourcemaps');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
+const sourcemaps = require('gulp-sourcemaps');
+
+//Scripts
 const terser = require('gulp-terser');
+const concat = require('gulp-concat');
+
+//Styles
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+
+//SVGs
+const svgmin = require('gulp-svgmin');
+
+
 
 const paths = {
     html: {
@@ -34,6 +47,10 @@ const paths = {
     cachebust: {
         src: ['./dist/**/*.html'],
         dest: './dist/',
+    },
+    svgs: {
+        src: 'src/img/**/*.svg',
+        dest: 'dist/img/'
     },
 };
 
@@ -76,6 +93,15 @@ function cacheBust() {
         .pipe(dest(paths.cachebust.dest));
 }
 
+// Optimize SVG files
+function buildSVGs() {
+    // Optimize SVG files
+    return src(paths.svgs.src)
+        .pipe(svgmin())
+        .pipe(dest(paths.svgs.dest));
+
+}
+
 function watcher() {
     watch(paths.html.src, series(copyHtml, cacheBust));
     watch(paths.styles.src, parallel(compileStylesMin, cacheBust));
@@ -87,11 +113,12 @@ exports.copyHtml = copyHtml;
 exports.compileStyles = compileStyles;
 exports.compileStylesMin = compileStylesMin;
 exports.minifyScripts = minifyScripts;
+exports.buildSVGs = buildSVGs;
 exports.cacheBust = cacheBust;
 exports.watcher = watcher;
 
 exports.default = series(
-    parallel(copyHtml, compileStyles, compileStylesMin, minifyScripts),
+    parallel(copyHtml, compileStyles, compileStylesMin, minifyScripts, buildSVGs),
     cacheBust,
     watcher
 );
