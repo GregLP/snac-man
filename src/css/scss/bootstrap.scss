@@ -16,13 +16,13 @@
 @import "vendors/root";
 @import "vendors/reboot";
 @import "vendors/type";
-@import "vendors/images";
+/*@import "vendors/images";*/
 @import "vendors/containers";
 @import "vendors/grid";
-@import "vendors/tables";
-@import "vendors/forms";
+/*@import "vendors/tables";
+@import "vendors/forms";*/
 @import "vendors/buttons";
-@import "vendors/transitions";
+/*@import "vendors/transitions";
 @import "vendors/dropdown";
 @import "vendors/button-group";
 @import "vendors/nav";
@@ -32,9 +32,9 @@
 @import "vendors/breadcrumb";
 @import "vendors/pagination";
 @import "vendors/badge";
-@import "vendors/alert";
+@import "vendors/alert";*/
 @import "vendors/progress";
-@import "vendors/list-group";
+/*@import "vendors/list-group";
 @import "vendors/close";
 @import "vendors/toasts";
 @import "vendors/modal";
@@ -42,7 +42,7 @@
 @import "vendors/popover";
 @import "vendors/carousel";
 @import "vendors/spinners";
-@import "vendors/offcanvas";
+@import "vendors/offcanvas";*/
 
 // Helpers
 @import "vendors/helpers";
