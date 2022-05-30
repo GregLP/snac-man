@@ -1,40 +1,5 @@
-svg.logo {
-    .line {
-    fill:none;
-    stroke:$gray;
-    stroke-miterlimit:10;
-    stroke-width: 0.5;
-    }
-
-    text {
-    fill:$gray;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:6px;
-    }
-
-    .eye-pupil {
-    fill:$gray;
-    stroke:$gray;
-    stroke-miterlimit:10;
-    stroke-width:.25;
-    }
-
-    .eye-whites {
-    fill:$white;
-    stroke:$gray;
-    stroke-miterlimit:10;
-    stroke-width:.25;
-    }
-
-    .hamburger {
-    fill: $burnt-orange;
-    stroke:$burnt-orange;
-    stroke-miterlimit:10;
-    }
-}
-
-svg#snacman {
-    .line {
+svg.logo, svg#snacman {
+    .limb {
         fill:none;
         stroke:$gray;
         stroke-miterlimit:10;
@@ -54,23 +19,16 @@ svg#snacman {
         stroke-width:.25;
     }
 
-    .eye-whites {
+    .eye-white {
         fill:$white;
         stroke:$gray;
         stroke-miterlimit:10;
         stroke-width:.25;
     }
 
-    .hamburger {
+    .mouth {
         fill: $burnt-orange;
         stroke:$burnt-orange;
         stroke-miterlimit:10;
     }
-}
-
-.brand svg {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 50vh;
 }

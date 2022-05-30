@@ -234,65 +234,36 @@ a.btn-puzzle svg {
   margin-left: 0;
 }
 
-svg.logo .line {
+svg.logo .limb, svg#snacman .limb {
   fill: none;
   stroke: rgb(33, 33, 33);
   stroke-miterlimit: 10;
   stroke-width: 0.5;
 }
-svg.logo text {
+svg.logo text, svg#snacman text {
   fill: rgb(33, 33, 33);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 6px;
 }
-svg.logo .eye-pupil {
+svg.logo .eye-pupil, svg#snacman .eye-pupil {
   fill: rgb(33, 33, 33);
   stroke: rgb(33, 33, 33);
   stroke-miterlimit: 10;
   stroke-width: 0.25;
 }
-svg.logo .eye-whites {
+svg.logo .eye-white, svg#snacman .eye-white {
   fill: rgb(255, 255, 255);
   stroke: rgb(33, 33, 33);
   stroke-miterlimit: 10;
   stroke-width: 0.25;
 }
-svg.logo .hamburger {
+svg.logo .mouth, svg#snacman .mouth {
   fill: rgb(165, 113, 42);
   stroke: rgb(165, 113, 42);
   stroke-miterlimit: 10;
 }
 
-svg#snacman .line {
-  fill: none;
-  stroke: rgb(33, 33, 33);
-  stroke-miterlimit: 10;
-  stroke-width: 0.5;
-}
-svg#snacman text {
-  fill: rgb(33, 33, 33);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 6px;
-}
-svg#snacman .eye-pupil {
-  fill: rgb(33, 33, 33);
-  stroke: rgb(33, 33, 33);
-  stroke-miterlimit: 10;
-  stroke-width: 0.25;
-}
-svg#snacman .eye-whites {
-  fill: rgb(255, 255, 255);
-  stroke: rgb(33, 33, 33);
-  stroke-miterlimit: 10;
-  stroke-width: 0.25;
-}
-svg#snacman .hamburger {
-  fill: rgb(165, 113, 42);
-  stroke: rgb(165, 113, 42);
-  stroke-miterlimit: 10;
-}
-
-.brand svg {
+#brand .logo {
   width: auto;
   height: auto;
   max-width: 100%;
