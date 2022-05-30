@@ -37,7 +37,7 @@ main {
 }
 
 .copyright {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
 body {
@@ -53,7 +53,7 @@ body {
   min-height: calc(100vh - 30px);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   #pageContainer {
     margin: 25px 50px;
     padding: 30px 50px;
@@ -263,11 +263,11 @@ svg.logo .mouth, svg#snacman .mouth {
   stroke-miterlimit: 10;
 }
 
-#brand .logo {
+.brand .logo {
   width: auto;
-  height: auto;
   max-width: 100%;
-  max-height: 50vh;
+  height: 50vh;
+  max-height: 100%;
 }
 
 .puzzle-container {
