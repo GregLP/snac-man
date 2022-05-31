@@ -242,18 +242,18 @@ function gameOver() {
     let resultText = document.getElementById("resultText");
     let gameScore = document.getElementById("gameScore");
     let nextPuzzle = document.getElementById("nextPuzzleBtn");
-
+    let fireworks = document.getElementById("fireworks");
     let nextPuzzleUrl = function randomPuzzle() {
         const totalPuzzles = Object.keys(games);
         const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
         const newPuzzleName = totalPuzzles[newPuzzleArrayNumber];
         return `?name=${newPuzzleName}`;
     }
-
     if (winGame) {
         score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*lives;
         resultHeading.textContent = "You Win!";
         resultText.textContent = `Congratulations!`;
+        fireworks.innerHTML = `<div class="pyro"><div class="before"></div><div class="after"></div></div>`;
     } else {
         score = 0;
         resultHeading.textContent = "Game Over";
