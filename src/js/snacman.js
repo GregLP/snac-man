@@ -19,6 +19,7 @@ let blinking = false;
 let blink;
 const clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, --seconds)}, 1000);
 const timer = document.getElementById('timer');
+let winGame = false;
 
 
 function addPuzzleTitle() {
@@ -203,7 +204,8 @@ const munchCheck = function(){
         document.getElementById('progressBar').style.width = `${progressBarValue}%`;
         currentLocationP.textContent = '';
         if (numCorrect === numToWin){
-            celebrate();
+            winGame = true;
+            gameOver();
         }
     }
     else if ( currentLocationP.textContent === ''  ) {
@@ -236,38 +238,30 @@ const lifeCheck = function(lives){
 };
 
 function gameOver() {
-    document.getElementById("gameOver").style.visibility = "visible";
-    score = 0;
-    let loser_text = `<h2>Game Over</h2><p>A fatal exception has occurred</p><p>You lose</p><p>Score: ${score}</p><div>Next Puzzle: <a class="btn btn-default" href="${randomPuzzle()}"></a></div>`;
-    document.getElementById('gameOver').innerHTML = loser_text;
+    let resultHeading = document.getElementById("resultHeading");
+    let resultText = document.getElementById("resultText");
+    let gameScore = document.getElementById("gameScore");
+    let nextPuzzle = document.getElementById("nextPuzzleBtn");
+
+    let nextPuzzleUrl = function randomPuzzle() {
+        const totalPuzzles = Object.keys(games);
+        const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
+        const newPuzzleName = totalPuzzles[newPuzzleArrayNumber];
+        return `?name=${newPuzzleName}`;
+    }
+
+    if (winGame) {
+        score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*lives;
+        resultHeading.textContent = "You Win!";
+        resultText.textContent = `Congratulations!`;
+    } else {
+        score = 0;
+        resultHeading.textContent = "Game Over";
+        resultText.textContent = "Better luck next time!";
+    }
+    gameScore.textContent = `${score}`;
+    nextPuzzle.setAttribute('href', nextPuzzleUrl());
     clearInterval(clock);
     clearInterval(blink);
-}
-
-const celebrate = function(){
-    setTimeout(function(){
-        document.getElementById("gameOver").style.visibility = "visible";
-        score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*lives;
-        let stars = 0
-        if (score > 6000)
-            stars = 3;
-        else if (score > 4000)
-            stars = 2;
-        else if (score > 2000)
-            stars = 1;
-        let winner_text = `<h2>Game Over</h2><p>You Win!</p><p>Score: ${score}</p>`;
-        for (let i=0; i<stars; i++)
-            winner_text += "<span id=\"stars\"> &#9733 </span>"
-        document.getElementById('gameOver').innerHTML = winner_text;
-        clearInterval(clock);
-        clearInterval(blink);
-    }, 200);
-};
-
-
-function randomPuzzle() {
-    const totalPuzzles = Object.keys(games);
-    const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
-    const newPuzzleName = totalPuzzles[newPuzzleArrayNumber];
-    return `?name=${newPuzzleName}`;
+    document.getElementById("gameOver").style.visibility = "visible";
 }

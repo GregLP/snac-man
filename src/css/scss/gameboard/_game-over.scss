@@ -1,0 +1,52 @@
+#gameOver {
+  visibility: hidden;
+  background-color: $blue;
+  color: $white;
+  position: absolute;
+  top: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  border-radius: 10px;
+  width: 98vw;
+  height: 93vh;
+  z-index: 1;
+  margin: auto;
+  padding: 50px 20px;
+
+  h2 {
+    font-size: 15vw;
+  }
+  #resultText {
+    font-size: 7vw;
+  }
+  #score {
+    font-size: 10vw;
+  }
+  span#gameScore {
+    display: block;
+  }
+  .btn {
+    width: 100%;
+    background-color: $yellow;
+    color: $gray;
+    border-color: $yellow;
+    font-size: 2rem;
+  }
+  #gameOverOptions > div {
+    width: 100%;
+  }
+}
+
+
+@media (min-width: 768px) {
+  #gameOver {
+    height:55%;
+    width:55%;
+    left:23.6%;
+    top:20%;
+  }
+  span#gameScore {
+    display: inline;
+  }
+}

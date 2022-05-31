@@ -27,28 +27,6 @@
     }
 }
 
-#gameOver {
-  background-color: $blue;
-  color:$white;
-  height:55%;
-  width:55%;
-  border-radius: 10px;
-  position:absolute;
-  z-index: 10002;
-  left:23.6%;
-  top:20%;
-  text-align: center;
-  font-size: 2.8em;
-  visibility: hidden;
-}
-
-#bagGuy1{
-  border-radius: 100px;
-}
-
-#stars{
-  font-size: 2em;
-}
 
 #playView {
   background-color: $yellow;
@@ -64,6 +42,7 @@
 #gameTitle {
   flex: 4 60%;
 }
+
 #gameTitle {
   font-size: 2.75rem;
   text-align: center;
@@ -81,7 +60,7 @@
 .game-container .cell {
     width: calc(97vw / 5);
     height: calc(85vh / 4);
-    border: 2px solid $black;
+    box-shadow: 2px 0 0 0 $black, 0 2px 0 0 $black, 2px 2px 0 0 $black, 2px 0 0 0 $black inset, 0 2px 0 0 $black inset;;
     overflow: hidden;
     display: flex;
     align-items: center;
