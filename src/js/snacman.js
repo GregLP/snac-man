@@ -264,4 +264,5 @@ function gameOver() {
     clearInterval(clock);
     clearInterval(blink);
     document.getElementById("gameOver").style.visibility = "visible";
+    document.getElementById("playView").style.opacity = .3;
 }

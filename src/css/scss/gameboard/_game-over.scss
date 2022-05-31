@@ -13,7 +13,6 @@
   z-index: 1;
   margin: auto;
   padding: 50px 20px;
-
   h2 {
     font-size: 15vw;
   }
@@ -33,20 +32,33 @@
     border-color: $yellow;
     font-size: 2rem;
   }
-  #gameOverOptions > div {
+  .game-over-option {
     width: 100%;
   }
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   #gameOver {
-    height:55%;
-    width:55%;
-    left:23.6%;
-    top:20%;
+    #resultText {
+      font-size: 3rem;
+    }
+    #score {
+      font-size: 2rem;
+    }
+    span#gameScore {
+      display: inline;
+    }
   }
-  span#gameScore {
-    display: inline;
+}
+
+@media (min-width: 1200px) {
+  #gameOver {
+    .btn {
+      width: 650px;
+    }
+    .game-over-option {
+      width: auto;
+    }
   }
 }
