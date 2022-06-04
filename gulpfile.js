@@ -18,8 +18,9 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
-//SVGs
+//HTML
 const svgmin = require('gulp-svgmin');
+const htmlmin = require('gulp-htmlmin');
 
 
 
@@ -54,9 +55,9 @@ const paths = {
     },
 };
 
-function copyHtml() {
+/*function copyHtml() {
     return src(paths.html.src).pipe(dest(paths.html.dest));
-}
+}*/
 
 function compileStyles() {
     return src(paths.stylesSrc.src)
@@ -102,14 +103,21 @@ function buildSVGs() {
 
 }
 
+function minifyHtml() {
+    return src(paths.html.src)
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(dest(paths.html.dest));
+}
+
 function watcher() {
-    watch(paths.html.src, series(copyHtml, cacheBust));
+    watch(paths.html.src, series(minifyHtml, cacheBust));
     watch(paths.styles.src, parallel(compileStylesMin, cacheBust));
     watch(paths.stylesSrc.src, parallel(compileStyles, cacheBust));
     watch(paths.scripts.src, parallel(minifyScripts, cacheBust));
 }
 
-exports.copyHtml = copyHtml;
+//exports.copyHtml = copyHtml;
+exports.minifyHtml = minifyHtml;
 exports.compileStyles = compileStyles;
 exports.compileStylesMin = compileStylesMin;
 exports.minifyScripts = minifyScripts;
@@ -118,7 +126,7 @@ exports.cacheBust = cacheBust;
 exports.watcher = watcher;
 
 exports.default = series(
-    parallel(copyHtml, compileStyles, compileStylesMin, minifyScripts, buildSVGs),
+    parallel(minifyHtml, compileStyles, compileStylesMin, minifyScripts, buildSVGs),
     cacheBust,
     watcher
 );
