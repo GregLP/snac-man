@@ -43,15 +43,15 @@ const findNumToWin = function(obj){
 numToWin = findNumToWin(gameSongs);
 progressBarPercentage = 100 / findNumToWin(gameSongs);
 
-const drawLives = function(lives){
+function drawLives(lives) {
     for (let i = 0; i < lives; i++){
         const lives_container = document.getElementById("gameLivesRemaining");
         const lives_remaining_html = `<img class="life-remaining" id="life${i}" width="50" height="50" src="img/snacman.svg" alt="snacman extra life">`;
         lives_container.insertAdjacentHTML("beforeend", lives_remaining_html);
     }
-};
+}
 
-const drawBoard = function(){
+function drawBoard(){
     let gameboard = '';
     for (let i = 0; i < rows; i++){
         for (let j = 0; j < cols; j++){
@@ -59,7 +59,7 @@ const drawBoard = function(){
         }
     }
     document.getElementById('gameBoard').innerHTML = gameboard;
-};
+}
 
 function placeSnacman() {
     const snacmanStartingCell = document.getElementById("r0c0");
@@ -67,7 +67,7 @@ function placeSnacman() {
     snacmanStartingCell.insertAdjacentHTML("beforeend", drawSnacman);
 }
 
-const setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_seconds){
+function setTime(new_ten_minutes, new_minutes, new_ten_seconds, new_seconds){
     ten_minutes = new_ten_minutes;
     minutes = new_minutes;
     ten_seconds = new_ten_seconds;
@@ -105,7 +105,7 @@ const setTime = function(new_ten_minutes, new_minutes, new_ten_seconds, new_seco
         }
     }
     timer.textContent = `${ten_minutes.toString()}${minutes.toString()}:${ten_seconds.toString()}${seconds.toString()}`;
-};
+}
 
 drawLives(2);
 drawBoard();
@@ -124,6 +124,7 @@ function moveSnacman() {
     currentLocationId = document.getElementById(currentLocation);
     currentLocationId.appendChild(snacman);
 }
+
 
 window.addEventListener("keydown", function (event) {
     if (event.defaultPrevented) {
@@ -180,7 +181,7 @@ window.addEventListener("keydown", function (event) {
 }, true);
 
 
-const eat = function() {
+function eat() {
     const leftLeg = document.querySelector('.limb-left .leg');
     const rightLeg = document.querySelector('.limb-right .leg');
     const mouthBottom = document.querySelector('.mouth-bottom');
@@ -194,7 +195,7 @@ const eat = function() {
     }, 100)
 }
 
-const munchCheck = function(){
+function munchCheck() {
     let currentLocationP = document.querySelector(`#${currentLocation} p`);
     if (gameSongs[currentLocationP.textContent] && lives) {
         ++numCorrect;
@@ -228,14 +229,14 @@ const munchCheck = function(){
     }
 }
 
-const lifeCheck = function(lives){
+function lifeCheck(lives) {
     if (lives === 0){
         gameOver();
     } else {
         let extraLifeId = `life${lives -1}`;
         document.getElementById(extraLifeId).style.visibility = "hidden";
     }
-};
+}
 
 function gameOver() {
     let resultHeading = document.getElementById("resultHeading");
