@@ -32,13 +32,13 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-const findNumToWin = function(obj){
+function findNumToWin(obj){
     numToWin = 0;
     for (let key in obj){
         numToWin += (obj.hasOwnProperty(key) && obj[key]) ? 1 : 0;
     }
     return numToWin;
-};
+}
 
 numToWin = findNumToWin(gameSongs);
 progressBarPercentage = 100 / findNumToWin(gameSongs);
@@ -112,7 +112,6 @@ drawBoard();
 placeSnacman();
 addPuzzleTitle()
 
-
 let currentRow = 0;
 let currentColumn = 0;
 let currentLocation = `r${currentRow}c${currentColumn}`;
@@ -124,7 +123,6 @@ function moveSnacman() {
     currentLocationId = document.getElementById(currentLocation);
     currentLocationId.appendChild(snacman);
 }
-
 
 window.addEventListener("keydown", function (event) {
     if (event.defaultPrevented) {
@@ -179,7 +177,6 @@ window.addEventListener("keydown", function (event) {
     }
     event.preventDefault();
 }, true);
-
 
 function eat() {
     const leftLeg = document.querySelector('.limb-left .leg');
