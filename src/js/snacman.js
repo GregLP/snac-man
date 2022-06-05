@@ -110,7 +110,8 @@ function setTime(new_ten_minutes, new_minutes, new_ten_seconds, new_seconds){
 drawLives(2);
 drawBoard();
 placeSnacman();
-addPuzzleTitle()
+addPuzzleTitle();
+setUserCumulativeScore();
 
 let currentRow = 0;
 let currentColumn = 0;
@@ -235,12 +236,21 @@ function lifeCheck(lives) {
     }
 }
 
+function setUserCumulativeScore() {
+    let totalScore = localStorage.getItem('totalUserScore');
+    if (totalScore === null) {
+        let currentTotalScore = '0';
+        localStorage.setItem('totalUserScore', currentTotalScore);
+    }
+}
+
 function gameOver() {
     let resultHeading = document.getElementById("resultHeading");
     let resultText = document.getElementById("resultText");
     let gameScore = document.getElementById("gameScore");
     let nextPuzzle = document.getElementById("nextPuzzleBtn");
     let fireworks = document.getElementById("fireworks");
+    let cumulativeScore = localStorage.getItem('totalUserScore');
     let nextPuzzleUrl = function randomPuzzle() {
         const totalPuzzles = Object.keys(games);
         const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
@@ -263,4 +273,7 @@ function gameOver() {
     clearInterval(blink);
     document.getElementById("gameOver").style.visibility = "visible";
     document.getElementById("playView").style.opacity = .3;
+    let newTotalScore = parseInt(cumulativeScore) + score;
+    let newTotalString = newTotalScore.toString();
+    localStorage.setItem('totalUserScore', newTotalString );
 }

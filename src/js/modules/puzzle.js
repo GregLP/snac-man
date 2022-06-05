@@ -10,4 +10,10 @@ function createPuzzleUrl() {
     const puzzleButton = document.getElementById('playButton');
     puzzleButton.setAttribute('href', `play.html${newPuzzleSelected}`);
 }
-createPuzzleUrl()
+
+function setUserScore() {
+    document.getElementById('score').textContent = localStorage.getItem('totalUserScore');
+}
+
+createPuzzleUrl();
+setUserScore();
