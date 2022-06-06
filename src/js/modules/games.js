@@ -378,4 +378,6 @@ const games = {
     "Liverpool": 1, "Leeds United": 0, "Newcastle United": 1, "West Ham United": 0,
     "Blackburn Rovers": 0, "Aston Villa": 1}
     }
-};	
+};
+
+localStorage.setItem('games', JSON.stringify(games));
