@@ -263,10 +263,12 @@ function gameOver() {
         resultHeading.textContent = "You Win!";
         resultText.textContent = `Congratulations!`;
         fireworks.innerHTML = `<div class="pyro"><div class="before"></div><div class="after"></div></div>`;
+        newPuzzle.result = 'win';
     } else {
         score = 0;
         resultHeading.textContent = "Game Over";
         resultText.textContent = "Better luck next time!";
+        newPuzzle.result = 'loss';
     }
     gameScore.textContent = `${score}`;
     nextPuzzle.setAttribute('href', nextPuzzleUrl());
@@ -277,4 +279,7 @@ function gameOver() {
     let newTotalScore = parseInt(cumulativeScore) + score;
     let newTotalString = newTotalScore.toString();
     localStorage.setItem('totalUserScore', newTotalString );
+    newPuzzle.played = true;
+    newPuzzle.score = `${score}`;
+    localStorage.setItem('playerGames', JSON.stringify(playerGamesList));
 }
