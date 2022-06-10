@@ -1,6 +1,8 @@
+let playerGamesList = JSON.parse(localStorage.getItem('playerGames'));
 const puzzle = getParameterByName("name");
-const gameSongs = games[puzzle]["puzzle"];
-const gameTitle = games[puzzle]["title"];
+const gameSongs = playerGamesList[puzzle]["puzzle"];
+const gameTitle = playerGamesList[puzzle]["title"];
+const newPuzzle = playerGamesList[puzzle];
 const songs = Object.keys(gameSongs);
 const rows = 4;
 const cols = 5;
@@ -20,7 +22,6 @@ let blink;
 const clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, --seconds)}, 1000);
 const timer = document.getElementById('timer');
 let winGame = false;
-
 
 function addPuzzleTitle() {
     document.querySelector('h1').textContent = gameTitle;
@@ -252,7 +253,7 @@ function gameOver() {
     let fireworks = document.getElementById("fireworks");
     let cumulativeScore = localStorage.getItem('totalUserScore');
     let nextPuzzleUrl = function randomPuzzle() {
-        const totalPuzzles = Object.keys(games);
+        const totalPuzzles = Object.keys(playerGamesList);
         const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
         const newPuzzleName = totalPuzzles[newPuzzleArrayNumber];
         return `?name=${newPuzzleName}`;
