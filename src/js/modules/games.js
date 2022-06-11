@@ -1146,4 +1146,12 @@ const games = {
     }
 };
 
-localStorage.setItem('playerGames', JSON.stringify(games));
+
+function setPuzzles() {
+    let storedGames = localStorage.getItem('playerGames');
+    if (storedGames === null) {
+        localStorage.setItem('playerGames', JSON.stringify(games));
+    }
+}
+
+setPuzzles();
