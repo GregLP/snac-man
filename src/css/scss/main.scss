@@ -1,23 +1,29 @@
 @import 'utilities/variables';
 @import 'utilities/functions';
 @import 'utilities/mixins';
+
 @import 'base/reset';
 @import 'base/typography';
+
 @import 'vendors/bootstrap';
 @import 'layout/navigation';
+
 @import 'layout/grid';
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/main';
-@import 'layout/gameboard';
+
 @import 'components/buttons';
 @import 'components/svg';
 @import 'components/modal';
+@import 'components/tooltip';
+
 @import 'pages/index';
-@import 'pages/settings';
 @import 'pages/puzzle-select';
-@import 'pages/gameplay';
+
+@import 'gameboard/gameplay';
+@import 'gameboard/gameboard';
 @import 'gameboard/game-over';
-@import 'theme/theme';
+
 @import 'animations/die';
 @import 'animations/fireworks';

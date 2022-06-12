@@ -11,9 +11,13 @@
     font-size: 5rem;
     line-height: 1;
 }
-a.profile {
+a.profile-link {
     color: $gray;
     text-decoration: none;
+}
+button.settings-button {
+    background: transparent;
+    border: none;
 }
 @media (min-width: 768px) {
     .flex-item.puzzle {

@@ -1,0 +1,40 @@
+.tooltip {
+  position:relative;
+  border-bottom:1px dashed $gray;
+  font-size: 1.7rem;
+}
+.tooltip:before {
+  content: attr(data-tooltip);
+  position:absolute;
+  top:100%;
+  transform:translateX(-14%);
+  left:initial;
+  margin-top:10px;
+  width:160px;
+  padding: 1rem;
+  border-radius:1rem;
+  background: $blue;
+  color: $white;
+  text-align:center;
+  opacity: 0;
+  transition: opacity .5s;
+}
+.tooltip:after {
+  opacity: 0;
+  transition: opacity .5s;
+}
+.tooltip:hover:before {
+  visibility: visible;
+  opacity: 1;
+}
+.tooltip:hover:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent $blue transparent;
+  opacity:1;
+}
