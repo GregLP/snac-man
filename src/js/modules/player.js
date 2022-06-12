@@ -21,9 +21,9 @@ function createHeader(title) {
 function createWinLossPara(result) {
     let resultPara = document.createElement('th');
     if (result === 'win') {
-        resultPara.innerHTML = `You Won!`;
+        resultPara.innerHTML = `<svg class="win-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M9.55 19 2.825 12.275 5.25 9.85 9.55 14.175 18.775 4.95 21.2 7.35Z"/></svg>`;
     } else {
-        resultPara.innerHTML = `You Lost!`;
+        resultPara.innerHTML = `<svg class="lose-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.35 20.025 4 17.65 9.625 12 4 6.35 6.35 3.95 12 9.6 17.65 3.95 20 6.35 14.375 12 20 17.65 17.65 20.025 12 14.375Z"/></svg>`;
     }
     return resultPara;
 }
@@ -33,3 +33,10 @@ function createScorePara(score) {
     scorePara.innerHTML = score;
     return scorePara;
 }
+
+
+function setUserScore() {
+    document.getElementById('totalScore').textContent = localStorage.getItem('totalUserScore');
+}
+
+setUserScore()
