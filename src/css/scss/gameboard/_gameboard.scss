@@ -85,7 +85,7 @@ img.life-remaining {
     position: relative;
 }
 
-td {
+.game td {
   width: calc(97vw / 5);
   height: calc(80vh / 4);
   border: 2px solid $black;
