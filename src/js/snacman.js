@@ -283,3 +283,16 @@ function gameOver() {
     newPuzzle.score = `${score}`;
     localStorage.setItem('playerGames', JSON.stringify(playerGamesList));
 }
+
+
+
+
+const beforeUnloadListener = (event) => {
+    event.preventDefault();
+    return event.returnValue = "Are you sure you want to exit?";
+};
+const exitGame = document.querySelector("#exitGame");
+
+exitGame.addEventListener("click", (event) => {
+    addEventListener("beforeunload", beforeUnloadListener);
+});
