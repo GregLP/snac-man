@@ -1146,12 +1146,19 @@ const games = {
     }
 };
 
+let settings = {
+    "sound": true,
+    "autoplay": true
+};
 
-function setPuzzles() {
-    let storedGames = localStorage.getItem('playerGames');
-    if (storedGames === null) {
-        localStorage.setItem('playerGames', JSON.stringify(games));
+function checkLocalStorage(key, value){
+    let storageItem = localStorage.getItem(key);
+    if (storageItem === null) {
+        localStorage.setItem(key, value);
     }
 }
 
-setPuzzles();
+checkLocalStorage('playerGames', JSON.stringify(games));
+checkLocalStorage('settings', JSON.stringify(settings));
+checkLocalStorage('totalUserScore', '0');
+
