@@ -23,10 +23,10 @@ const clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, 
 const timer = document.getElementById('timer');
 let winGame = false;
 
-let munchCorrect = document.getElementById('munchCorrect');
-let munchIncorrect = document.getElementById('munchIncorrect');
-let munchWin = document.getElementById('munchWin');
-let munchLose = document.getElementById('munchLose');
+let munchCorrect = new Audio('audio/correct.ogg')
+let munchIncorrect = new Audio('audio/wrong.ogg')
+let munchWin = new Audio('audio/win.mp3')
+let munchLose = new Audio('audio/lose.mp3')
 
 
 function addPuzzleTitle() {
@@ -132,7 +132,9 @@ function moveSnacman() {
     currentLocationId.appendChild(snacman);
 }
 
-window.addEventListener("keydown", function (event) {
+window.addEventListener("keydown", keyboardMove, true);
+
+function keyboardMove(event) {
     if (event.defaultPrevented) {
         return;
     }
@@ -184,7 +186,7 @@ window.addEventListener("keydown", function (event) {
             return;
     }
     event.preventDefault();
-}, true);
+}
 
 function eat() {
     const leftLeg = document.querySelector('.limb-left .leg');
@@ -217,6 +219,7 @@ function munchCheck() {
     } else if ( currentLocationP.textContent === ''  ) {
         currentLocationP.textContent = '';
     } else if (lives > 0){
+        window.removeEventListener("keydown", keyboardMove, true);
         munchIncorrect.play();
         snacman.classList.add("die-animation");
         currentLocationId.style.backgroundColor = 'rgba(196, 30, 58,1)';
@@ -226,7 +229,8 @@ function munchCheck() {
         setTimeout(function(){
             chewable = true;
             snacman.classList.remove("die-animation");
-            currentLocationId.style.backgroundColor = 'initial'
+            currentLocationId.style.backgroundColor = 'initial';
+            window.addEventListener("keydown", keyboardMove, true);
         }, 1000);
     }
     else{
@@ -259,12 +263,14 @@ function gameOver() {
     let nextPuzzle = document.getElementById("nextPuzzleBtn");
     let fireworks = document.getElementById("fireworks");
     let cumulativeScore = localStorage.getItem('totalUserScore');
+
     let nextPuzzleUrl = function randomPuzzle() {
         const totalPuzzles = Object.keys(playerGamesList);
         const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
         const newPuzzleName = totalPuzzles[newPuzzleArrayNumber];
         return `?name=${newPuzzleName}`;
     }
+
     if (winGame) {
         munchWin.play();
         score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*lives;
@@ -279,6 +285,7 @@ function gameOver() {
         resultText.textContent = "Better luck next time!";
         newPuzzle.result = 'loss';
     }
+
     gameScore.textContent = `${score}`;
     nextPuzzle.setAttribute('href', nextPuzzleUrl());
     clearInterval(clock);
