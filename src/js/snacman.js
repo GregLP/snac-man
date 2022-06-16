@@ -310,14 +310,9 @@ function gameOver() {
     localStorage.setItem('playerGames', JSON.stringify(playerGamesList));
 }
 
-/*const confirmGameExit = (event) => {
-    event.preventDefault();
-    return event.returnValue = "Are you sure you want to exit?";
-};*/
 const exitGame = document.querySelector("#exitGame");
-
 exitGame.addEventListener("click", (event) => {
-    if (confirm("Press a button!")) {
+    if (confirm("Are you sure you want to exit?")) {
         window.location = "index.html";
     } else {
         event.preventDefault();
