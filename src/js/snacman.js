@@ -1,4 +1,5 @@
 let playerGamesList = JSON.parse(localStorage.getItem('playerGames'));
+let settingsLIst = JSON.parse(localStorage.getItem('settings'));
 const puzzle = getParameterByName("name");
 const gameSongs = playerGamesList[puzzle]["puzzle"];
 const gameTitle = playerGamesList[puzzle]["title"];
@@ -19,15 +20,16 @@ let ten_seconds = 0;
 let seconds = 0;
 let blinking = false;
 let blink;
+let playSound = settingsLIst.sound;
+
+
 const clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, --seconds)}, 1000);
 const timer = document.getElementById('timer');
 let winGame = false;
-
-let munchCorrect = new Audio('audio/correct.ogg')
-let munchIncorrect = new Audio('audio/wrong.ogg')
-let munchWin = new Audio('audio/win.mp3')
-let munchLose = new Audio('audio/lose.mp3')
-
+let munchCorrect = new Audio('audio/correct.ogg');
+let munchIncorrect = new Audio('audio/wrong.ogg');
+let munchWin = new Audio('audio/win.mp3');
+let munchLose = new Audio('audio/lose.mp3');
 
 function addPuzzleTitle() {
     document.querySelector('h1').textContent = gameTitle;
@@ -205,7 +207,9 @@ function eat() {
 function munchCheck() {
     let currentLocationP = document.querySelector(`#${currentLocation} p`);
     if (gameSongs[currentLocationP.textContent] && lives) {
-        munchCorrect.play();
+        if (playSound) {
+            munchCorrect.play();
+        }
         ++numCorrect;
         score += 100;
         progressBarValue += progressBarPercentage;
@@ -220,7 +224,9 @@ function munchCheck() {
         currentLocationP.textContent = '';
     } else if (lives > 0){
         window.removeEventListener("keydown", keyboardMove, true);
-        munchIncorrect.play();
+        if (playSound) {
+            munchIncorrect.play();
+        }
         snacman.classList.add("die-animation");
         currentLocationId.style.backgroundColor = 'rgba(196, 30, 58,1)';
         currentLocationP.textContent = '';
@@ -272,14 +278,18 @@ function gameOver() {
     }
 
     if (winGame) {
-        munchWin.play();
+        if (playSound) {
+            munchWin.play();
+        }
         score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*lives;
         resultHeading.textContent = "You Win!";
         resultText.textContent = `Congratulations!`;
         fireworks.innerHTML = `<div class="pyro"><div class="before"></div><div class="after"></div></div>`;
         newPuzzle.result = 'win';
     } else {
-        munchLose.play();
+        if (playSound) {
+            munchLose.play();
+        }
         score = 0;
         resultHeading.textContent = "Game Over";
         resultText.textContent = "Better luck next time!";
@@ -300,15 +310,16 @@ function gameOver() {
     localStorage.setItem('playerGames', JSON.stringify(playerGamesList));
 }
 
-
-
-
-const beforeUnloadListener = (event) => {
+/*const confirmGameExit = (event) => {
     event.preventDefault();
     return event.returnValue = "Are you sure you want to exit?";
-};
+};*/
 const exitGame = document.querySelector("#exitGame");
 
 exitGame.addEventListener("click", (event) => {
-    addEventListener("beforeunload", beforeUnloadListener);
+    if (confirm("Press a button!")) {
+        window.location = "index.html";
+    } else {
+        event.preventDefault();
+    }
 });
