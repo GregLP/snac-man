@@ -62,7 +62,7 @@ class Gameboard {
         let gameboard = '';
         for (let i = 0; i < this.rowsCount; i++){
             for (let j = 0; j < this.columnsCount; j++){
-                gameboard += ` <div id="r${i.toString() + "c" + j.toString()}" class="cell"><p>${puzzle.questionNames[i]}</p></div>`;
+                gameboard += ` <div id="r${i.toString() + "c" + j.toString()}" class="cell"><p>${puzzle.questionNames.pop()}</p></div>`;
             }
         }
         return document.getElementById('gameBoard').innerHTML = gameboard;
@@ -236,7 +236,7 @@ function eat() {
 
 function munchCheck() {
     let currentLocationP = document.querySelector(`#${currentLocation} p`);
-    if (puzzle.questionNames[currentLocationP.textContent] && game.livesCount) {
+    if (puzzle.questions[currentLocationP.textContent] && game.livesCount) {
 
         ++numCorrect;
         game.score += 100;
@@ -291,7 +291,7 @@ function gameOver() {
     let cumulativeScore = localStorage.getItem('totalUserScore');
 
     let nextPuzzleUrl = function randomPuzzle() {
-        const totalPuzzles = Object.keys(playerGamesList);
+        const totalPuzzles = Object.keys(allPuzzles);
         const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
         const newPuzzleName = totalPuzzles[newPuzzleArrayNumber];
         return `?name=${newPuzzleName}`;
@@ -302,12 +302,10 @@ function gameOver() {
         resultHeading.textContent = "You Win!";
         resultText.textContent = `Congratulations!`;
         fireworks.innerHTML = `<div class="pyro"><div class="before"></div><div class="after"></div></div>`;
-        newPuzzle.result = 'win';
     } else {
         game.score = 0;
         resultHeading.textContent = "Game Over";
         resultText.textContent = "Better luck next time!";
-        newPuzzle.result = 'loss';
     }
 
     gameScore.textContent = `${game.score}`;
@@ -319,35 +317,7 @@ function gameOver() {
     let newTotalScore = parseInt(cumulativeScore) + game.score;
     let newTotalString = newTotalScore.toString();
     localStorage.setItem('totalUserScore', newTotalString );
-    newPuzzle.played = true;
-    newPuzzle.score = `${game.score}`;
-    localStorage.setItem('playerGames', JSON.stringify(playerGamesList));
 }
-
-
-/*
-
-
-
-
-
-
-//SOUND
-let settingsLIst = JSON.parse(localStorage.getItem('settings'));
-let playSound = settingsLIst.sound;
-let munchCorrect = new Audio('audio/correct.ogg');
-let munchIncorrect = new Audio('audio/wrong.ogg');
-let munchWin = new Audio('audio/win.mp3');
-let munchLose = new Audio('audio/lose.mp3');
-
-
-
-
-
-
-
-
-
 
 
 const exitGame = document.querySelector("#exitGame");
@@ -357,4 +327,15 @@ exitGame.addEventListener("click", (event) => {
     } else {
         event.preventDefault();
     }
-});*/
+});
+
+
+/*
+//SOUND
+let settingsLIst = JSON.parse(localStorage.getItem('settings'));
+let playSound = settingsLIst.sound;
+let munchCorrect = new Audio('audio/correct.ogg');
+let munchIncorrect = new Audio('audio/wrong.ogg');
+let munchWin = new Audio('audio/win.mp3');
+let munchLose = new Audio('audio/lose.mp3');
+*/
