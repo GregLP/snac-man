@@ -1,39 +1,13 @@
-let playerGamesList = JSON.parse(localStorage.getItem('playerGames'));
-let settingsLIst = JSON.parse(localStorage.getItem('settings'));
-const puzzle = getParameterByName("name");
-const gameSongs = playerGamesList[puzzle]["puzzle"];
-const gameTitle = playerGamesList[puzzle]["title"];
-const newPuzzle = playerGamesList[puzzle];
-const songs = Object.keys(gameSongs);
-const rows = 4;
-const cols = 5;
-let lives = 3;
-let numCorrect = 0;
-let progressBarValue = 0;
-let score = 0;
-let chewable = true;
-let progressBarPercentage;
-let numToWin;
-let ten_minutes = 0;
-let minutes = 1;
-let ten_seconds = 0;
-let seconds = 0;
-let blinking = false;
-let blink;
-let playSound = settingsLIst.sound;
-
-
-const clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, --seconds)}, 1000);
-const timer = document.getElementById('timer');
-let winGame = false;
-let munchCorrect = new Audio('audio/correct.ogg');
-let munchIncorrect = new Audio('audio/wrong.ogg');
-let munchWin = new Audio('audio/win.mp3');
-let munchLose = new Audio('audio/lose.mp3');
-
-function addPuzzleTitle() {
-    document.querySelector('h1').textContent = gameTitle;
+function checkLocalStorage(key, value){
+    let storageItem = localStorage.getItem(key);
+    if (storageItem === null) {
+        localStorage.setItem(key, value);
+    }
 }
+checkLocalStorage('totalUserScore', '0');
+
+//Get ID of Puzzle from Query String in URL and set it to puzzleId
+const puzzleId = getParameterByName("name");
 
 function getParameterByName(name) {
     const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -41,40 +15,102 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-function findNumToWin(obj){
-    numToWin = 0;
-    for (let key in obj){
-        numToWin += (obj.hasOwnProperty(key) && obj[key]) ? 1 : 0;
+class Puzzle {
+    correctAnswersCount;
+    constructor(puzzleId) {
+        this.puzzleId = puzzleId;
+        this.puzzleName = allPuzzles[puzzleId]["title"];
+        this.questions = allPuzzles[puzzleId]["puzzle"];
+        this.questionNames = Object.keys(this.questions);
+        this.correctAnswersCount = this.correctQuestionsCalc();
     }
-    return numToWin;
+
+    correctQuestionsCalc(){
+        let numToWin = 0;
+        for (let key in this.questions){
+            numToWin += (this.questions.hasOwnProperty(key) && this.questions[key]) ? 1 : 0;
+        }
+        return numToWin;
+    }
 }
 
-numToWin = findNumToWin(gameSongs);
-progressBarPercentage = 100 / findNumToWin(gameSongs);
-
-function drawLives(lives) {
-    for (let i = 0; i < lives; i++){
-        const lives_container = document.getElementById("gameLivesRemaining");
-        const lives_remaining_html = `<img class="life-remaining" id="life${i}" width="50" height="50" src="img/snacman.svg" alt="snacman extra life">`;
-        lives_container.insertAdjacentHTML("beforeend", lives_remaining_html);
+class Game {
+    constructor(){
+        this.score = 0;
+        this.livesCount = 3;
+        this.answeredCorrectlyCount = 0;
+        this.progressBarPercent = 0;
+        this.isChewable = true;
+        this.hasWonGame = false;
     }
 }
 
-function drawBoard(){
-    let gameboard = '';
-    for (let i = 0; i < rows; i++){
-        for (let j = 0; j < cols; j++){
-            gameboard += ` <div id="r${i.toString() + "c" + j.toString()}" class="cell"><p>${songs.pop()}</p></div>`;
+class Gameboard {
+    constructor(rowsCount, columnsCount, extraLivesCount) {
+        this.rowsCount = rowsCount;
+        this.columnsCount = columnsCount;
+        this.extraLivesCount = extraLivesCount;
+    }
+    drawLives() {
+        for (let i = 0; i < (this.extraLivesCount - 1); i++) {
+            const lives_container = document.getElementById("gameLivesRemaining");
+            const lives_remaining_html = `<img class="life-remaining" id="life${i}" width="50" height="50" src="img/snacman.svg" alt="snacman extra life">`;
+            lives_container.insertAdjacentHTML("beforeend", lives_remaining_html);
         }
     }
-    document.getElementById('gameBoard').innerHTML = gameboard;
+    drawBoard() {
+        let gameboard = '';
+        for (let i = 0; i < this.rowsCount; i++){
+            for (let j = 0; j < this.columnsCount; j++){
+                gameboard += ` <div id="r${i.toString() + "c" + j.toString()}" class="cell"><p>${puzzle.questionNames[i]}</p></div>`;
+            }
+        }
+        return document.getElementById('gameBoard').innerHTML = gameboard;
+    }
+
+    placeSnacman() {
+        const snacmanStartingCell = document.getElementById("r0c0");
+        const drawSnacman = `<svg id="snacman" x="0px" y="0px"  viewBox="0 0 30.3 37.1" xml:space="preserve"><g class="limb limb-left"><line class="line-1 leg" x1="13.7" y1="31.3" x2="13.7" y2="37.1"/><line class="line-2 foot" x1="8.6" y1="36.9" x2="13.9" y2="36.9"/></g><g class="limb limb-right"><line class="line-3 leg" x1="18" y1="31.4" x2="18" y2="37.1"/><line class="line-4 foot" x1="17.8" y1="36.9" x2="23.1" y2="36.9"/></g><g class="mouth"><path class="path-1 mouth-top" d="M29.7,11.3C28.6,5.2,22.5,0.5,15.2,0.5S1.8,5.2,0.6,11.3H29.7z"/><path class="path-2 mouth-bottom" d="M1.5,22.5c2.3,5.2,7.6,8.9,13.7,8.9s11.4-3.7,13.7-8.9H1.5z"/></g><g class="eye eye-left"><path class="path-3 eye-white" d="M14.2,3.8c0,1.1-0.9,2-1.9,2s-1.9-0.9-1.9-2s0.9-2,1.9-2S14.2,2.6,14.2,3.8z"/><path class="path-4 eye-pupil" d="M12.9,3.1c0,0.6-0.5,1.1-1.1,1.1s-1.1-0.5-1.1-1.2S11.2,2,11.8,2S12.9,2.5,12.9,3.1z"/></g><g class="eye eye-right"><path class="path-5 eye-white" d="M20.7,3.6c0,1.1-0.9,2-1.9,2s-1.9-0.9-1.9-2s0.9-2,1.9-2S20.7,2.5,20.7,3.6z"/><path class="path-6 eye eye-pupil" d="M20.3,4.4c0,0.6-0.5,1.2-1.1,1.2s-1.1-0.5-1.1-1.2s0.5-1.2,1.1-1.2S20.3,3.8,20.3,4.4z"/></g></svg>`;
+        snacmanStartingCell.insertAdjacentHTML("beforeend", drawSnacman);
+    }
+
+    addPuzzleTitle() {
+        document.querySelector('h1').textContent = puzzle.puzzleName;
+    }
 }
 
-function placeSnacman() {
-    const snacmanStartingCell = document.getElementById("r0c0");
-    const drawSnacman = `<svg id="snacman" x="0px" y="0px"  viewBox="0 0 30.3 37.1" xml:space="preserve"><g class="limb limb-left"><line class="line-1 leg" x1="13.7" y1="31.3" x2="13.7" y2="37.1"/><line class="line-2 foot" x1="8.6" y1="36.9" x2="13.9" y2="36.9"/></g><g class="limb limb-right"><line class="line-3 leg" x1="18" y1="31.4" x2="18" y2="37.1"/><line class="line-4 foot" x1="17.8" y1="36.9" x2="23.1" y2="36.9"/></g><g class="mouth"><path class="path-1 mouth-top" d="M29.7,11.3C28.6,5.2,22.5,0.5,15.2,0.5S1.8,5.2,0.6,11.3H29.7z"/><path class="path-2 mouth-bottom" d="M1.5,22.5c2.3,5.2,7.6,8.9,13.7,8.9s11.4-3.7,13.7-8.9H1.5z"/></g><g class="eye eye-left"><path class="path-3 eye-white" d="M14.2,3.8c0,1.1-0.9,2-1.9,2s-1.9-0.9-1.9-2s0.9-2,1.9-2S14.2,2.6,14.2,3.8z"/><path class="path-4 eye-pupil" d="M12.9,3.1c0,0.6-0.5,1.1-1.1,1.1s-1.1-0.5-1.1-1.2S11.2,2,11.8,2S12.9,2.5,12.9,3.1z"/></g><g class="eye eye-right"><path class="path-5 eye-white" d="M20.7,3.6c0,1.1-0.9,2-1.9,2s-1.9-0.9-1.9-2s0.9-2,1.9-2S20.7,2.5,20.7,3.6z"/><path class="path-6 eye eye-pupil" d="M20.3,4.4c0,0.6-0.5,1.2-1.1,1.2s-1.1-0.5-1.1-1.2s0.5-1.2,1.1-1.2S20.3,3.8,20.3,4.4z"/></g></svg>`;
-    snacmanStartingCell.insertAdjacentHTML("beforeend", drawSnacman);
-}
+const puzzle = new Puzzle(puzzleId);
+const game = new Game();
+const gameboard = new Gameboard(4, 5, 3);
+gameboard.drawBoard();
+gameboard.drawLives();
+gameboard.placeSnacman();
+gameboard.addPuzzleTitle();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let progressBarPercentage = 100 / puzzle.correctAnswersCount;
+let numCorrect = 0;
+//CLOCK
+let ten_minutes = 0;
+let minutes = 1;
+let ten_seconds = 0;
+let seconds = 0;
+let blinking = false;
+let blink;
+const clock = setInterval(function(){setTime(ten_minutes, minutes, ten_seconds, --seconds)}, 1000);
+const timer = document.getElementById('timer');
 
 function setTime(new_ten_minutes, new_minutes, new_ten_seconds, new_seconds){
     ten_minutes = new_ten_minutes;
@@ -116,12 +152,6 @@ function setTime(new_ten_minutes, new_minutes, new_ten_seconds, new_seconds){
     timer.textContent = `${ten_minutes.toString()}${minutes.toString()}:${ten_seconds.toString()}${seconds.toString()}`;
 }
 
-drawLives(2);
-drawBoard();
-placeSnacman();
-addPuzzleTitle();
-setUserCumulativeScore();
-
 let currentRow = 0;
 let currentColumn = 0;
 let currentLocation = `r${currentRow}c${currentColumn}`;
@@ -145,7 +175,7 @@ function keyboardMove(event) {
         case "ArrowDown":
         case "s":
             currentRow++;
-            if (currentRow >= rows ) {
+            if (currentRow >= gameboard.columnsCount ) {
                 currentRow = 0;
             }
             moveSnacman();
@@ -155,7 +185,7 @@ function keyboardMove(event) {
         case "w":
             currentRow--
             if (currentRow < 0 ) {
-                currentRow = (rows - 1);
+                currentRow = (gameboard.columnsCount - 1);
             }
             moveSnacman();
             break;
@@ -164,7 +194,7 @@ function keyboardMove(event) {
         case "a":
             currentColumn--;
             if (currentColumn < 0 ) {
-                currentColumn = (cols - 1);
+                currentColumn = (gameboard.columnsCount - 1);
             }
             moveSnacman();
             break;
@@ -172,14 +202,14 @@ function keyboardMove(event) {
         case "ArrowRight":
         case "d":
             currentColumn++;
-            if (currentColumn >= cols ) {
+            if (currentColumn >= gameboard.columnsCount ) {
                 currentColumn = 0;
             }
             moveSnacman()
             break;
         case "Enter":
         case " ":
-            if (chewable){
+            if (game.isChewable){
                 munchCheck();
                 eat();
             }
@@ -206,34 +236,30 @@ function eat() {
 
 function munchCheck() {
     let currentLocationP = document.querySelector(`#${currentLocation} p`);
-    if (gameSongs[currentLocationP.textContent] && lives) {
-        if (playSound) {
-            munchCorrect.play();
-        }
+    if (puzzle.questionNames[currentLocationP.textContent] && game.livesCount) {
+
         ++numCorrect;
-        score += 100;
-        progressBarValue += progressBarPercentage;
-        document.getElementById('gamePointTotal').innerHTML = score;
-        document.getElementById('progressBar').style.width = `${progressBarValue}%`;
+        game.score += 100;
+        game.progressBarPercent += progressBarPercentage;
+        document.getElementById('gamePointTotal').innerHTML = game.score;
+        document.getElementById('progressBar').style.width = `${game.progressBarPercent}%`;
         currentLocationP.textContent = '';
-        if (numCorrect === numToWin){
-            winGame = true;
+        if (numCorrect === puzzle.correctAnswersCount){
+            game.hasWonGame = true;
             gameOver();
         }
     } else if ( currentLocationP.textContent === ''  ) {
         currentLocationP.textContent = '';
-    } else if (lives > 0){
+    } else if (game.livesCount > 0){
         window.removeEventListener("keydown", keyboardMove, true);
-        if (playSound) {
-            munchIncorrect.play();
-        }
+
         snacman.classList.add("die-animation");
         currentLocationId.style.backgroundColor = 'rgba(196, 30, 58,1)';
         currentLocationP.textContent = '';
-        lifeCheck(--lives);
-        chewable = false;
+        lifeCheck(--game.livesCount);
+        game.isChewable = false;
         setTimeout(function(){
-            chewable = true;
+            game.isChewable = true;
             snacman.classList.remove("die-animation");
             currentLocationId.style.backgroundColor = 'initial';
             window.addEventListener("keydown", keyboardMove, true);
@@ -254,13 +280,7 @@ function lifeCheck(lives) {
     }
 }
 
-function setUserCumulativeScore() {
-    let totalScore = localStorage.getItem('totalUserScore');
-    if (totalScore === null) {
-        let currentTotalScore = '0';
-        localStorage.setItem('totalUserScore', currentTotalScore);
-    }
-}
+
 
 function gameOver() {
     let resultHeading = document.getElementById("resultHeading");
@@ -277,38 +297,58 @@ function gameOver() {
         return `?name=${newPuzzleName}`;
     }
 
-    if (winGame) {
-        if (playSound) {
-            munchWin.play();
-        }
-        score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*lives;
+    if (game.hasWonGame) {
+        game.score += (seconds + 10*ten_seconds + 60*minutes + 3600*ten_minutes)*100 + 500*game.livesCount;
         resultHeading.textContent = "You Win!";
         resultText.textContent = `Congratulations!`;
         fireworks.innerHTML = `<div class="pyro"><div class="before"></div><div class="after"></div></div>`;
         newPuzzle.result = 'win';
     } else {
-        if (playSound) {
-            munchLose.play();
-        }
-        score = 0;
+        game.score = 0;
         resultHeading.textContent = "Game Over";
         resultText.textContent = "Better luck next time!";
         newPuzzle.result = 'loss';
     }
 
-    gameScore.textContent = `${score}`;
+    gameScore.textContent = `${game.score}`;
     nextPuzzle.setAttribute('href', nextPuzzleUrl());
     clearInterval(clock);
     clearInterval(blink);
     document.getElementById("gameOver").style.visibility = "visible";
     document.getElementById("playView").style.opacity = .3;
-    let newTotalScore = parseInt(cumulativeScore) + score;
+    let newTotalScore = parseInt(cumulativeScore) + game.score;
     let newTotalString = newTotalScore.toString();
     localStorage.setItem('totalUserScore', newTotalString );
     newPuzzle.played = true;
-    newPuzzle.score = `${score}`;
+    newPuzzle.score = `${game.score}`;
     localStorage.setItem('playerGames', JSON.stringify(playerGamesList));
 }
+
+
+/*
+
+
+
+
+
+
+//SOUND
+let settingsLIst = JSON.parse(localStorage.getItem('settings'));
+let playSound = settingsLIst.sound;
+let munchCorrect = new Audio('audio/correct.ogg');
+let munchIncorrect = new Audio('audio/wrong.ogg');
+let munchWin = new Audio('audio/win.mp3');
+let munchLose = new Audio('audio/lose.mp3');
+
+
+
+
+
+
+
+
+
+
 
 const exitGame = document.querySelector("#exitGame");
 exitGame.addEventListener("click", (event) => {
@@ -317,4 +357,4 @@ exitGame.addEventListener("click", (event) => {
     } else {
         event.preventDefault();
     }
-});
+});*/

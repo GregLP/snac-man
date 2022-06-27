@@ -1,4 +1,4 @@
-const games = {
+const allPuzzles = {
     "bob": {
         "title": "Bob Dylan Songs",
         "category": "Music",
@@ -1145,20 +1145,3 @@ const games = {
         }
     }
 };
-
-let settings = {
-    "sound": true,
-    "autoplay": true
-};
-
-function checkLocalStorage(key, value){
-    let storageItem = localStorage.getItem(key);
-    if (storageItem === null) {
-        localStorage.setItem(key, value);
-    }
-}
-
-checkLocalStorage('playerGames', JSON.stringify(games));
-checkLocalStorage('settings', JSON.stringify(settings));
-checkLocalStorage('totalUserScore', '0');
-
