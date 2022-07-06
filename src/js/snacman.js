@@ -90,18 +90,9 @@ gameboard.addPuzzleTitle();
 
 
 
-
-
-
-
-
-
-
-
-
-
 let progressBarPercentage = 100 / puzzle.correctAnswersCount;
 let numCorrect = 0;
+
 //CLOCK
 let ten_minutes = 0;
 let minutes = 1;
@@ -175,7 +166,7 @@ function keyboardMove(event) {
         case "ArrowDown":
         case "s":
             currentRow++;
-            if (currentRow >= gameboard.columnsCount ) {
+            if (currentRow >= gameboard.rowsCount ) {
                 currentRow = 0;
             }
             moveSnacman();
@@ -185,7 +176,7 @@ function keyboardMove(event) {
         case "w":
             currentRow--
             if (currentRow < 0 ) {
-                currentRow = (gameboard.columnsCount - 1);
+                currentRow = (gameboard.rowsCount - 1);
             }
             moveSnacman();
             break;
@@ -279,7 +270,6 @@ function lifeCheck(lives) {
         document.getElementById(extraLifeId).style.visibility = "hidden";
     }
 }
-
 
 
 function gameOver() {

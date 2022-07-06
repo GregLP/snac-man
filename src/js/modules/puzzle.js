@@ -1,5 +1,5 @@
 function randomPuzzle() {
-    const totalPuzzles = Object.keys(puzzles);
+    const totalPuzzles = Object.keys(allPuzzles);
     const newPuzzleArrayNumber = Math.floor(Math.random() * (totalPuzzles.length - 1));
     const newPuzzleName = totalPuzzles[newPuzzleArrayNumber];
     return `?name=${newPuzzleName}`;
@@ -30,6 +30,5 @@ function checkLocalStorage(key, value){
 createPuzzleUrl();
 setUserScore();
 
-checkLocalStorage('playerGames', JSON.stringify(puzzles));
 checkLocalStorage('settings', JSON.stringify(settings));
 checkLocalStorage('totalUserScore', '0');

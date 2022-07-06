@@ -1,4 +1,4 @@
-let allGames = Object.values(JSON.parse(localStorage.getItem('playerGames')));
+let allGames = Object.values(JSON.parse(localStorage.getItem('playedPuzzles')));
 document.getElementById('totalScore').textContent = localStorage.getItem('totalUserScore');
 
 for (let i = 0; i < allGames.length; i++) {
