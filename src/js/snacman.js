@@ -1,3 +1,6 @@
+import Puzzle from './components/Puzzle.min.js';
+import Game from './components/Game.min.js';
+
 function checkLocalStorage(key, value){
     let storageItem = localStorage.getItem(key);
     if (storageItem === null) {
@@ -15,35 +18,9 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-class Puzzle {
-    correctAnswersCount;
-    constructor(puzzleId) {
-        this.puzzleId = puzzleId;
-        this.puzzleName = allPuzzles[puzzleId]["title"];
-        this.questions = allPuzzles[puzzleId]["puzzle"];
-        this.questionNames = Object.keys(this.questions);
-        this.correctAnswersCount = this.correctQuestionsCalc();
-    }
 
-    correctQuestionsCalc(){
-        let numToWin = 0;
-        for (let key in this.questions){
-            numToWin += (this.questions.hasOwnProperty(key) && this.questions[key]) ? 1 : 0;
-        }
-        return numToWin;
-    }
-}
 
-class Game {
-    constructor(){
-        this.score = 0;
-        this.livesCount = 3;
-        this.answeredCorrectlyCount = 0;
-        this.progressBarPercent = 0;
-        this.isChewable = true;
-        this.hasWonGame = false;
-    }
-}
+
 
 class Gameboard {
     constructor(rowsCount, columnsCount, extraLivesCount) {
